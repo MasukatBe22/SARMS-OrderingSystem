@@ -1,0 +1,13 @@
+@if ( ($order->status) == 'New' )
+    <span class="badge badge-dark" style="font-size:100%;">{{ $order->status }}</span>
+@elseif ( ($order->status) == 'Assigned' )
+    <span class="badge badge-info" style="font-size:100%;">{{ $order->status }}</span>
+@elseif ( ($order->status) == 'Cooking' )
+    <span class="badge badge-warning" style="font-size:100%;">{{ $order->status }}</span>
+@elseif ( ($order->status) == 'Cancel' )
+    <span class="badge badge-danger" style="font-size:100%;">{{ $order->status }}</span>
+@elseif ( ($order->status) == 'Done' )
+    <span class="badge badge-success" style="font-size:100%;">{{ $order->status }}</span>
+@elseif ( ($order->status) == 'Pick up' )
+    <span class="badge badge-primary" style="font-size:100%;">{{ $order->status }}</span>
+@endif
