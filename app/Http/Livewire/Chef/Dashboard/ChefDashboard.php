@@ -39,8 +39,12 @@ class ChefDashboard extends ChefComponent
     {
         $customer = Order::with('customer')->get();
         $product = Products::all();
-        $orders = Order::where('chef_id', Auth::user()->id)->latest()->paginate(10);
+        $orders = Order::where('chef_id', Auth::user()->id)->orderBy('id', 'desc')->paginate(10);
 
-        return view('livewire.chef.dashboard.chef-dashboard', ['orders' => $orders, 'customer' => $customer, 'product' => $product])->layout('layouts.chef');
+        return view('livewire.chef.dashboard.chef-dashboard', [
+            'orders' => $orders,
+            'customer' => $customer,
+            'product' => $product
+        ])->layout('layouts.chef');
     }
 }

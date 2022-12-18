@@ -113,7 +113,11 @@ class ListProducts extends AdminComponent
     	$AvailableProductsCount = Products::where('status', 'Available')->count();
     	$UnavailableProductsCount = Products::where('status', 'Unavailable')->count();
             
-        return view('livewire.admin.products.list-products', ['products' => $products, 'ProductsCount' => $ProductsCount, 'AvailableProductsCount' => $AvailableProductsCount, 'UnavailableProductsCount' => $UnavailableProductsCount])
-            ->layout('layouts.admin');
+        return view('livewire.admin.products.list-products', [
+            'products' => $products,
+            'ProductsCount' => $ProductsCount,
+            'AvailableProductsCount' => $AvailableProductsCount,
+            'UnavailableProductsCount' => $UnavailableProductsCount
+        ])->layout('layouts.admin');
     }
 }

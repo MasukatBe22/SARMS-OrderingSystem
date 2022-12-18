@@ -39,6 +39,13 @@ class ListOrders extends AdminComponent
         $newOrder = Order::where('status', 'New')->count();
         $AssignedOrder = Order::where('status', 'Assigned')->count();
 
-        return view('livewire.admin.orders.list-orders', ['orders' => $orders, 'customer' => $customer, 'product' => $product, 'users' => $users, 'newOrder' => $newOrder, 'AssignedOrder' => $AssignedOrder])->layout('layouts.admin');
+        return view('livewire.admin.orders.list-orders', [
+            'orders' => $orders,
+            'customer' => $customer,
+            'product' => $product,
+            'users' => $users,
+            'newOrder' => $newOrder,
+            'AssignedOrder' => $AssignedOrder
+        ])->layout('layouts.admin');
     }
 }

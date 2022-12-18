@@ -96,8 +96,7 @@ class ListUsers extends AdminComponent
             ->orwhere('email', 'like', '%'.$this->searchTerm.'%')
             ->orwhere('created_at', 'like', '%'.$this->searchTerm.'%')
             ->latest()->paginate(10);
-        return view('livewire.admin.users.list-users', [
-        'users' => $users])->layout('layouts.admin');
+        return view('livewire.admin.users.list-users', ['users' => $users])->layout('layouts.admin');
     }
 }
 
