@@ -68,7 +68,7 @@
                                         <div class="form-group row">
                                             <label for="inputemail" class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
-                                                <input wire:model.defer="state.email" type="email" class="form-control @error('email') is-invalid @enderror" id="inputemail" placeholder="email">
+                                                <input wire:model.defer="state.email" type="email" class="form-control @error('email') is-invalid @enderror" id="inputemail" placeholder="email" disabled>
                                                 @error('email')
                                                 <div class="invalid-feedback">
                                                     {{ $message}}

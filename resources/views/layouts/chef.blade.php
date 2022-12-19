@@ -18,6 +18,8 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
+
+  <!-- Toastr -->
   <link rel="stylesheet" type="text/css" href="{{ asset('backend/plugins/toastr/toastr.min.css') }}">
 
   <script type="text/javascript" src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>

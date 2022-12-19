@@ -31,14 +31,18 @@ Route::get('/home', function () {
     dd(\Illuminate\Support\Facades\Auth::user());
 })->middleware('auth', 'verified');
 
-Route::get('admin/dashboard', DashboardController::class)->name('admin.dashboard');
-Route::get('admin/users', ListUsers::class)->name('admin.users');
-Route::get('admin/products', ListProducts::class)->name('admin.products');
-Route::get('admin/orders', ListOrders::class)->name('admin.orders');
-Route::get('admin/products/create', CreateProductsForm::class)->name('admin.products.create');
-Route::get('admin/profile', UpdateProfile::class)->name('admin.profile.edit');
-Route::get('admin/settings', UpdateSettings::class)->name('admin.settings');
+Route::group(['middleware' => ['auth', 'admin', 'verified']], function () {
+    Route::get('admin/dashboard', DashboardController::class)->name('admin.dashboard');
+    Route::get('admin/users', ListUsers::class)->name('admin.users');
+    Route::get('admin/products', ListProducts::class)->name('admin.products');
+    Route::get('admin/orders', ListOrders::class)->name('admin.orders');
+    Route::get('admin/products/create', CreateProductsForm::class)->name('admin.products.create');
+    Route::get('admin/profile', UpdateProfile::class)->name('admin.profile.edit');
+    Route::get('admin/settings', UpdateSettings::class)->name('admin.settings');
+});
 
-Route::get('chef/dashboard', ChefDashboard::class)->name('chef.dashboard');
-Route::get('chef/profile', ChefBio::class)->name('chef.profile.edit');
-Route::get('chef/settings', ChefSettings::class)->name('chef.settings');
+Route::group(['middleware' => ['auth', 'chef', 'verified']], function () {
+    Route::get('chef/dashboard', ChefDashboard::class)->name('chef.dashboard');
+    Route::get('chef/profile', ChefBio::class)->name('chef.profile.edit');
+    Route::get('chef/settings', ChefSettings::class)->name('chef.settings');
+});

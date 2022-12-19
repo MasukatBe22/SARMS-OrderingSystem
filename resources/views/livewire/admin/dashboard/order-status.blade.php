@@ -1,6 +1,6 @@
 <div class="col-lg-12">
     <div class="d-flex justify-content-center mb-2">
-        <div class="btn-group">
+        <div class="btn-group mt-3">
             <button wire:click="filterOrder" type="button" class="btn {{ is_null($status) ? 'btn-secondary' : 'btn-default' }}">
                 <span class="mr-1">All</span>
                 <span class="badge badge-pill badge-light">{{ $AllOrder }}</span>
@@ -33,6 +33,7 @@
     </div>
     <div class="card">
         <div class="card-body">
+            <h4 style="font-weight: bold;">Orders Table</h4>
             <table class="table table-hover">
                 <thead>
                     <tr>

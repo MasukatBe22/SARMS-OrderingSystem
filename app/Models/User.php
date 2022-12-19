@@ -70,7 +70,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Order::class, 'customer_id', 'id');
     }
 
-
     public function getAvatarUrlAttribute()
     {
         if ($this->avatar && Storage::disk('avatars')->exists($this->avatar)) {
@@ -78,5 +77,23 @@ class User extends Authenticatable implements MustVerifyEmail
         } else {
             return asset('noimage.png');
         }
+    }
+
+    public function isAdmin()
+    {
+        if ($this->role !== self::ROLE_ADMIN) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function isChef()
+    {
+        if ($this->role !== self::ROLE_CHEF) {
+            return false;
+        }
+
+        return true;
     }
 }
