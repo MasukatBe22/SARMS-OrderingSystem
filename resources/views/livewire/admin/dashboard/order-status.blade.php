@@ -44,10 +44,9 @@
                         <th scope="col">Quantity</th>
                         <th scope="col">Order Date</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Chef</th>
                     </tr>
                 </thead>
-                <tbody wire:loading.class="text-muted">
+                <tbody wire:poll.keep-alive>
                     @forelse ($orders as $index => $order)
                         <tr>
                             <th scope="col">{{ $orders->firstItem() + $index }}</th>
@@ -78,11 +77,11 @@
                                     <span class="badge badge-danger" style="font-size:100%;">{{ $order->status }}</span>
                                 @endif
                             </th>
-                            <th scope="col">{{ $order->chef->name }}</th>
+                            <th scope="col"></th>
                         </tr>
                     @empty
                         <tr class="text-center">
-                            <td colspan="8">
+                            <td colspan="7">
                             <img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/v2/assets/empty.svg" alt="No results found">
                             <p class="mt-2">No results found</p> 
                             </td>

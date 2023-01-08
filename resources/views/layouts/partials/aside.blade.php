@@ -3,11 +3,7 @@
     <!-- Brand Logo -->
     <div class="brand-link">
       <img src="{{ asset('logo/Logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      @if ( auth()->user()->role === 'admin' )
-        <span class="brand-text font-weight-light">Admin</span>
-      @else
-        <span class="brand-text font-weight-light">Chef</span>
-      @endif
+      <span class="brand-text font-weight-light" style="font-size: 19px">{{ setting('site_name') }}</span>
     </div>
 
     <!-- Sidebar -->

@@ -48,7 +48,7 @@
                                         <th scope="col">Chef</th>
                                     </tr>
                                 </thead>
-                                <tbody wire:loading.class="text-muted">
+                                <tbody wire:poll.keep-alive>
                                     @forelse ($orders as $index => $order)
                                         <tr>
                                             <th scope="col">{{ $orders->firstItem() + $index }}</th>

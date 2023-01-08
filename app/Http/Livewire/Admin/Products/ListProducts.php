@@ -16,6 +16,7 @@ class ListProducts extends AdminComponent
     public $status = null;
     public $selectedRows = [];
     public $selectPageRows = false;
+    public $selectedProductId;
 
     public function edit(int $product_id)
     {

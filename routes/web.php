@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\User\OrdersCart;
+use App\Http\Controllers\UserController;
 use App\Http\Livewire\Chef\Profile\ChefBio;
+use App\Http\Livewire\User\AccountSettings;
 use App\Http\Livewire\Admin\Users\ListUsers;
 use App\Http\Livewire\Admin\Orders\ListOrders;
 use App\Http\Livewire\Chef\Settings\ChefSettings;
@@ -27,9 +30,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    dd(\Illuminate\Support\Facades\Auth::user());
-})->middleware('auth', 'verified');
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::get('/homepage', [UserController::class, 'index'])->name('home');
+    Route::get('/homepage/account-settings', AccountSettings::class)->name('account');
+    Route::get('/homepage/orders', OrdersCart::class)->name('order');
+});
 
 Route::group(['middleware' => ['auth', 'admin', 'verified']], function () {
     Route::get('admin/dashboard', DashboardController::class)->name('admin.dashboard');

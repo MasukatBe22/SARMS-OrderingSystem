@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
                 </div>
@@ -36,7 +36,7 @@
                                         <th scope="col">Option</th>
                                     </tr>
                                 </thead>
-                                <tbody wire:loading.class="text-muted">
+                                <tbody wire:poll.keep-alive>
                                     @forelse ($orders as $order)
                                         <tr>
                                             <th scope="col">{{ $loop->iteration }}</th>
@@ -61,10 +61,12 @@
                                                     <span class="badge badge-danger" style="font-size:100%;">{{ $order->status }}</span>
                                                 @elseif ( ($order->status) === 'Cooked' )
                                                     <span class="badge badge-success" style="font-size:100%;">{{ $order->status }}</span>
+                                                @elseif ( ($order->status) == 'Pick-up' )
+                                                    <span class="badge badge-primary" style="font-size:100%;">{{ $order->status }}</span>
                                                 @endif
                                             </th>
                                             <th scope="col">
-                                                @if ( ($order->status) === 'Cancel' || ($order->status) === 'Cooked')
+                                                @if ( ($order->status) === 'Cancel' || ($order->status) === 'Cooked' || ($order->status) === 'Pick-up')
                                                     <div class="btn-group">
                                                         <button type="button" style="width: 85px;" value="Cooking" class="btn btn-warning" disabled>
                                                             <span style="font-size:100%; font-weight: bold;">Cooking</span>

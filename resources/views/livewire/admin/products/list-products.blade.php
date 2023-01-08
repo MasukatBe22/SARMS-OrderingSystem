@@ -84,9 +84,9 @@
                                 </div>
                               </th>
                               <th scope="row">{{ $products->firstItem() + $index }}</th>
-                              <td>
+                              <td style="display: flex;">
                                 @if ($prod->photo)
-                                  <img src="{{ url('storage/photo/'.$prod->photo) }}" style="width: 50px;" alt="photos" class="mr-2">
+                                  <img src="{{ url('storage/photo/'.$prod->photo) }}" style="width: 50px; height: 35px;" alt="photos" class="mr-2">
                                 @else
                                   <img src="{{ asset('noimage.png') }}" style="width: 50px;" alt="photos" class="mr-2">
                                 @endif
@@ -163,7 +163,7 @@
               <div class="form-group">
                 <label for="status">Status:</label>
                 <select wire:model.defer="state.status" class="form-control @error('status')is-invalid @enderror" name="status" id="status">
-                    <option value="">-----</option>
+                    <option value="" disabled>-----</option>
                     <option value="Available">Available</option>
                     <option value="Unavailable">Unavailable</option>
                 </select>

@@ -17,7 +17,6 @@ class OrderStatus extends AdminComponent
 
     public function render()
     {
-        $chef = Order::with('chef')->get();
         $customer = Order::with('customer')->get();
         $product = Products::all();
         $orders = Order::when($this->status, function ($query, $status) {
@@ -33,7 +32,6 @@ class OrderStatus extends AdminComponent
         return view('livewire.admin.dashboard.order-status', [
             'orders' => $orders,
             'customer' => $customer,
-            'chef' => $chef,
             'product' => $product,
             'AllOrder' => $AllOrder,
             'newOrder' => $newOrder,

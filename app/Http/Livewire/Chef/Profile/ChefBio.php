@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Chef\Profile;
 
-use App\Models\Chef;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Cart;
 use App\Models\Order;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Storage;
@@ -70,15 +71,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Order::class, 'customer_id', 'id');
     }
 
-    public function getAvatarUrlAttribute()
+    public function users()
     {
-        if ($this->avatar && Storage::disk('avatars')->exists($this->avatar)) {
-            return url('storage/avatars/'.auth()->user()->avatar);
-        } else {
-            return asset('noimage.png');
-        }
+        return $this->hasMany(Cart::class, 'user_id', 'id');
     }
-
+    
     public function isAdmin()
     {
         if ($this->role !== self::ROLE_ADMIN) {
@@ -95,5 +92,14 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return true;
+    }
+
+    public function getAvatarUrlAttribute()
+    {
+        if ($this->avatar && Storage::disk('avatars')->exists($this->avatar)) {
+            return url('storage/avatars/'.auth()->user()->avatar);
+        } else {
+            return asset('noimage.png');
+        }
     }
 }

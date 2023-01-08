@@ -11,11 +11,13 @@
             </li>
         @endif
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ url('/home') }}" class="nav-link">Home</a>
+            <a href="{{ url('/') }}" class="nav-link">Home</a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('admin.settings') }}" class="nav-link">Contact</a>
-        </li>
+        @if ( auth()->user()->role === 'admin' )
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ route('admin.settings') }}" class="nav-link">Contact</a>
+            </li>
+        @endif
     </ul>
 
     <!-- Right navbar links -->

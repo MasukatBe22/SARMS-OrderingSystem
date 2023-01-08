@@ -185,7 +185,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -196,6 +195,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\BladeComponentServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*

@@ -65,11 +65,11 @@
                             <input type="password" class="form-control" name="password_confirmation" id="password-confirm" required autocomplete="new-password" placeholder="Repeat your password"/>
                         </div>
                         <div class="form-group">
-                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                            <input type="checkbox" onchange="document.getElementById('registerBtn').disabled = !this.checked;" name="agree-term" id="agree-term" class="agree-term" />
                             <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
                         </div>
                         <div class="form-group form-button">
-                            <input type="submit" name="register" id="register" class="form-submit" value="Register"/>
+                            <input type="submit" name="registerBtn" id="registerBtn" class="form-submit" value="Register"/>
                         </div>
                     </form>
                 </div>

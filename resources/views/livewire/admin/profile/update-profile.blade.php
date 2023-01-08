@@ -34,7 +34,7 @@
                                         };
                                         reader.readAsDataURL($refs.image.files[0]);
                                     "/>
-                                <img x-on:click="$refs.image.click()" class="profile-user-img img-circle" x-bind:src="imagePreview" alt="User profile picture">
+                                <img x-on:click="$refs.image.click()" class="profile-user-img img-circle" x-bind:src="imagePreview" alt="User profile picture" style="width: 120px; height: 120px;">
                             </div>
                             <h3 class="profile-username text-center">{{ auth()->user()->name }}</h3>
                             <p class="text-muted text-center">Admin</p>

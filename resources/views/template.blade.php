@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('authentication/fonts/material-icon/css/material-design-iconic-font.min.css') }}">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="{{ asset('authentication/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('authentication/css/style.css') }}">
 </head>
 <body>
 
