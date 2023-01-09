@@ -40,7 +40,6 @@
 						<h4>Sample</h4>
 						<p>Sample</p>
 						<div class="bottom-content">
-							<li><a href="" class='bx bxs-cart'></a></li>
 							<h6>$##.##</h6>
 						</div>
 					</div>
@@ -56,7 +55,6 @@
 						<h4>Sample</h4>
 						<p>Sample</p>
 						<div class="bottom-content">
-							<li><a href="" class='bx bxs-cart'></a></li>
 							<h6>$##.##</h6>
 						</div>
 					</div>
@@ -72,7 +70,6 @@
 						<h4>Sample</h4>
 						<p>Sample</p>
 						<div class="bottom-content">
-							<li><a href="" class='bx bxs-cart'></a></li>
 							<h6>$##.##</h6>
 						</div>
 					</div>
@@ -88,7 +85,6 @@
 						<h4>Sample</h4>
 						<p>Sample</p>
 						<div class="bottom-content">
-							<li><a href="" class='bx bxs-cart'></a></li>
 							<h6>$##.##</h6>
 						</div>
 					</div>
