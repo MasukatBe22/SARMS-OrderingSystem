@@ -35,6 +35,11 @@
         <script>
             window.addEventListener('hide-form', event => {
                 $('#modalORderform').modal('hide');
+                swal({
+                    title: event.detail.title,
+                    text: event.detail.text,
+                    icon: event.detail.type,
+                });
             })
             window.addEventListener('show-form', event => {
                 $('#modalORderform').modal('show'); 

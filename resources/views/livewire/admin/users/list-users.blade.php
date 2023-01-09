@@ -31,12 +31,22 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Registerd Date</th>
-                                <th scope="col">Role</th>
+                                <th scope="col">Registerd Date
+                                  <span wire:click="sortBy('created_at')" class="float-right" style="cursor: pointer">
+                                    <i class="fa fa-arrow-up {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
+                                    <i class="fa fa-arrow-down {{ $sortColumnName === 'created_at' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
+                                  </span>
+                                </th>
+                                <th scope="col">Role
+                                  <span wire:click="sortBy('role')" class="float-right" style="cursor: pointer">
+                                    <i class="fa fa-arrow-up {{ $sortColumnName === 'role' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
+                                    <i class="fa fa-arrow-down {{ $sortColumnName === 'role' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
+                                  </span>
+                                </th>
                                 <th scope="col">Options</th>
                             </tr>
                         </thead>
-                        <tbody wire:loading.class="text-muted">
+                        <tbody wire:poll.keep-alive wire:loading.class="text-muted">
                             @forelse ($users as $index => $user)
                               <tr>
                                 <th scope="row">{{ $users->firstItem() + $index }}</th>

@@ -16,18 +16,19 @@ class Order extends Model
         'customer_id',
         'product_id',
         'quantity',
+        'type',
         'status',
     ];
 
     public function chef(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'chef_id');
     }
 
     public function customer(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'customer_id');
     }
 
     public function product(){
-        return $this->belongsTo(Products::class);
+        return $this->belongsTo(Products::class, 'product_id');
     }
 }

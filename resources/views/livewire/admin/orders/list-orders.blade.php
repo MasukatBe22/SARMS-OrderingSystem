@@ -72,8 +72,8 @@
                                                 @endif
                                             </th>
                                             <th scope="col">
-                                                <select class="form-control" wire:change="setChef({{ $order }}, $event.target.value)" required>
-                                                    <option value="" disabled>Select Chef</option>
+                                                <select class="form-control" wire:change="setChef({{ $order }}, $event.target.value)" >
+                                                    <option value="" {{ is_null($order->chef_id) ? "selected disabled" : "" }}>Select Chef</option>
                                                     @foreach($users as $user)
                                                         <option value="{{ $user->id }}" {{ $order->chef_id === $user->id ? "selected" : "" }}>{{ $user->name }}</option>
                                                     @endforeach

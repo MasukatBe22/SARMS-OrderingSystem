@@ -13,25 +13,30 @@ class OrdersCart extends Component
 {
     use WithPagination;
 
-    public $quan;
+    public $quan = '1';
+    public $typ = 'pcs';
     public $prods_id;
+    protected $listeners = ['refresh-me' => '$refresh'];
     
     public function newOrder($prodID)
     {
         $this->prods_id = $prodID;
 
         $this->dispatchBrowserEvent('show-form');
+        $this->emitSelf('refresh-me');
     }
 
     public function createOrder()
     {
         $validateData = Validator::make([
             'quantity' => $this->quan,
+            'type' => $this->typ,
             'status' => 'New',
             'customer_id' => auth()->user()->id,
             'product_id' => $this->prods_id,
         ], [
             'quantity' => 'required',
+            'type' => 'required',
             'status' => 'required',
             'customer_id' => 'required',
             'product_id' => 'required',
@@ -40,7 +45,7 @@ class OrdersCart extends Component
         Order::create($validateData);
         $this->dispatchBrowserEvent('hide-form', [
             'type' => 'success',
-            'title' => 'Order has been cancel!',
+            'title' => 'Order has successfully placed!',
             'text' => ''
         ]);
     }

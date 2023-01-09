@@ -6,6 +6,7 @@ use App\Models\Order;
 use Livewire\Component;
 use App\Models\Products;
 use Livewire\WithPagination;
+use Illuminate\Support\Carbon;
 
 class OrderSection extends Component
 {
@@ -13,9 +14,13 @@ class OrderSection extends Component
     
     public function render()
     {
-        $orders = Order::where('status', 'Cooking')->orderBy('updated_at', 'asc')->paginate(0);
-        $customer = Order::with('customer')->get();
+        $orders = Order::query()
+            ->whereIn('status', ['Assigned', 'Cooking', 'Cooked'])
+            ->where('customer_id', auth()->user()->id)
+            ->whereDay('created_at', Carbon::today('America/Chicago'))
+            ->orderBy('created_at', 'asc')->paginate(0);
+        $chef = Order::with('chef')->get();
         $product = Products::all();
-        return view('livewire.homepage.order-section', ['customer' => $customer, 'orders' => $orders, 'product' => $product]);
+        return view('livewire.homepage.order-section', ['chef' => $chef, 'orders' => $orders, 'product' => $product]);
     }
 }

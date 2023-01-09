@@ -2,10 +2,8 @@
     <div class="small-box bg-info">
       <div class="inner">
         <div class="d-flex justify-content-between">
-            <h3 wire:loading.delay.remove>{{ $orderCount }}</h3>
-            <div wire:loading.delay>
-                <x-animations.ballbeat />
-            </div>
+            <h3>{{ $orderCount }}</h3>
+            
             <select wire:change="getOrderCount($event.target.value)" style="height: 2rem; outline: 2px solid transparent;" class="px-1 rounded border-0">
                 <option value="">All</option>
                 <option value="New">New</option>
@@ -17,7 +15,7 @@
             </select>
         </div>
 
-        <p>Orders</p>
+        <p>Today Orders</p>
       </div>
       <a href="{{ route('admin.orders') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>

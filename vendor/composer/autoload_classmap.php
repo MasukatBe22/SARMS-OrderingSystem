@@ -33,7 +33,6 @@ return array(
     'App\\Http\\Livewire\\Chef\\Dashboard\\ChefDashboard' => $baseDir . '/app/Http/Livewire/Chef/Dashboard/ChefDashboard.php',
     'App\\Http\\Livewire\\Chef\\Profile\\ChefBio' => $baseDir . '/app/Http/Livewire/Chef/Profile/ChefBio.php',
     'App\\Http\\Livewire\\Chef\\Settings\\ChefSettings' => $baseDir . '/app/Http/Livewire/Chef/Settings/ChefSettings.php',
-    'App\\Http\\Livewire\\CreateOrder' => $baseDir . '/app/Http/Livewire/CreateOrder.php',
     'App\\Http\\Livewire\\Homepage\\ContactSection' => $baseDir . '/app/Http/Livewire/Homepage/ContactSection.php',
     'App\\Http\\Livewire\\Homepage\\HomeNav' => $baseDir . '/app/Http/Livewire/Homepage/HomeNav.php',
     'App\\Http\\Livewire\\Homepage\\HomeSection' => $baseDir . '/app/Http/Livewire/Homepage/HomeSection.php',

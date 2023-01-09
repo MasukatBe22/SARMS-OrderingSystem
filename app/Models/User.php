@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Cart;
-use App\Models\Order;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
@@ -60,21 +58,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'avatar_url',
     ];
-
-    public function chef()
-    {
-        return $this->hasMany(Order::class, 'chef_id', 'id');
-    }
-
-    public function customer()
-    {
-        return $this->hasMany(Order::class, 'customer_id', 'id');
-    }
-
-    public function users()
-    {
-        return $this->hasMany(Cart::class, 'user_id', 'id');
-    }
     
     public function isAdmin()
     {

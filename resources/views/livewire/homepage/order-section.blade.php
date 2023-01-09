@@ -16,12 +16,10 @@
                             
                             <div class="order-text">
                                 <h6>#{{ $orders->firstItem() + $index }}<h6>
-                                @if (Auth::user()->name === $order->customer->name )
-                                <h4 style="color: #7dd87d;">{{ $order->customer->name }}</h4>
-                                @else
-                                <h4>{{ $order->customer->name }}</h4>
-                                @endif
+                                <h4>{{ $order->chef->name }}</h4>
                                 <p>Orders Id: {{ $order->id }}</p>
+                                <p>Order Created: {{ $order->created_at }}</p>
+                                <p>Quantity: {{ $order->quantity }} {{ $order->type }}</p>
                                 <h6>Orders Status: {{ $order->status }}</h6>
                             </div>
                         </div>
@@ -34,52 +32,7 @@
                             </div>
                             
                             <div class="order-text">
-                                <h6>#1<h6>
-                                <h4>Sample</h4>
-                                <p>Orders Id: ####</p>
-                                <h6>Orders Status: Sample</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box-order">
-                        <div class="box-order-content">
-                            <div class="box-order-img">
-                                <img src="{{ asset('noimage.png') }}">
-                            </div>
-                            
-                            <div class="order-text">
-                                <h6>#2<h6>
-                                <h4>Sample</h4>
-                                <p>Orders Id: ####</p>
-                                <h6>Orders Status: Sample</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box-order">
-                        <div class="box-order-content">
-                            <div class="box-order-img">
-                                <img src="{{ asset('noimage.png') }}">
-                            </div>
-                            
-                            <div class="order-text">
-                                <h6>#3<h6>
-                                <h4>Sample</h4>
-                                <p>Orders Id: ####</p>
-                                <h6>Orders Status: Sample</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box-order">
-                        <div class="box-order-content">
-                            <div class="box-order-img">
-                                <img src="{{ asset('noimage.png') }}">
-                            </div>
-                            
-                            <div class="order-text">
-                                <h6>#4<h6>
-                                <h4>Sample</h4>
-                                <p>Orders Id: ####</p>
-                                <h6>Orders Status: Sample</h6>
+                                <h1>You don't have order today</h1>
                             </div>
                         </div>
                     </div>

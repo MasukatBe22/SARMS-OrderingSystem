@@ -609,7 +609,6 @@ class ComposerStaticInitf836eaaccd4b0c458b851636d42c9a3c
         'App\\Http\\Livewire\\Chef\\Dashboard\\ChefDashboard' => __DIR__ . '/../..' . '/app/Http/Livewire/Chef/Dashboard/ChefDashboard.php',
         'App\\Http\\Livewire\\Chef\\Profile\\ChefBio' => __DIR__ . '/../..' . '/app/Http/Livewire/Chef/Profile/ChefBio.php',
         'App\\Http\\Livewire\\Chef\\Settings\\ChefSettings' => __DIR__ . '/../..' . '/app/Http/Livewire/Chef/Settings/ChefSettings.php',
-        'App\\Http\\Livewire\\CreateOrder' => __DIR__ . '/../..' . '/app/Http/Livewire/CreateOrder.php',
         'App\\Http\\Livewire\\Homepage\\ContactSection' => __DIR__ . '/../..' . '/app/Http/Livewire/Homepage/ContactSection.php',
         'App\\Http\\Livewire\\Homepage\\HomeNav' => __DIR__ . '/../..' . '/app/Http/Livewire/Homepage/HomeNav.php',
         'App\\Http\\Livewire\\Homepage\\HomeSection' => __DIR__ . '/../..' . '/app/Http/Livewire/Homepage/HomeSection.php',

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Dashboard;
 
 use App\Models\Order;
 use Livewire\Component;
+use Illuminate\Support\Carbon;
 
 class OrderCount extends Component
 {
@@ -20,7 +21,8 @@ class OrderCount extends Component
             ->when($status, function ($query, $status){
                 return $query->where('status', $status);
             })
-            ->count();
+            ->whereDay('created_at', Carbon::today('America/Chicago'))
+            ->get()->count();
     }
 
     public function render()

@@ -48,7 +48,19 @@
 					</div>
 				</div>
 			</div>
-            @endforeach
+			@empty
+			<div class="box">
+				<div class="box-content">
+					<div class="box-img">
+						<img src="{{ asset('noimage.png') }}" alt="">
+					</div>
+
+					<div class="box-text">
+						<h1>Your cart is empty</h1>
+					</div>
+				</div>
+			</div>
+            @endforelse
 		</div>
 	</section>
 
@@ -58,7 +70,7 @@
 		</div>
 
 		<div wire:poll.keep-alive class="menu-content">
-            @forelse ($prods as $prod)
+            @foreach ($prods as $prod)
             <div class="box">
 				<div class="box-content">
 					<div class="box-img">
@@ -95,6 +107,7 @@
 					<div class="box-text">
 						<h4>{{ $order->product->title }}</h4>
 						<p>{{ $order->product->description }}</p>
+						<p>{{ $order->quantity }} {{ $order->type }}</p>
                         <h6>{{ $order->status }}</h6>
 						<div class="order-history-btn">
 							@if ($order->status === 'New' || $order->status === 'Assigned')
@@ -106,7 +119,19 @@
 					</div>
 				</div>
 			</div>
-            @endforeach
+            @empty
+			<div class="box">
+				<div class="box-content">
+					<div class="box-img">
+						<img src="{{ asset('noimage.png') }}" alt="">
+					</div>
+
+					<div class="box-text">
+						<h1>Your history is empty</h1>
+					</div>
+				</div>
+			</div>
+            @endforelse
 		</div>
 	</section>
 
@@ -119,8 +144,12 @@
 				</div>
 				<form wire:submit.prevent="createOrder" class="form-control">
 					<div class="modal-body">
-						<div class="form-group">
-							<input wire:model="quan" type="number" class="form-control @error('quantity') is-invalid @enderror" id="quantity" placeholder="Quantity">
+						<div class="form-group" style="font-size: 25px">
+							<input wire:model="typ" id="piece" name="type" type="radio" value="pcs" required />
+							<label for="piece">pcs</label>
+							<input wire:model="typ" id="serves" name="type" type="radio" value="serving" required />
+							<label for="serves">serving</label>
+							<input wire:model="quan" type="number" class="form-control mt-2 @error('quantity') is-invalid @enderror" id="quantity" placeholder="Quantity">
 
 							@error('quantity')
 								<div class="invalid-feedback">
