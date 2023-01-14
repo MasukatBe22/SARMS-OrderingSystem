@@ -90,9 +90,9 @@
                             <th scope="col">{{ $order->customer->mobile }}</th>
                             <th scope="col">
                                 @if ($order->product->photo)
-                                    <img src="{{ url('storage/photo/'.$order->product->photo) }}" style="width: 50px;" alt="photos" class="mr-2">
+                                    <img src="{{ url('storage/photo/'.$order->product->photo) }}" style="width: 50px; height: 35px;" alt="photos" class="mr-2">
                                 @else
-                                    <img src="" style="width: 50px;" alt="photos" class="mr-2">
+                                    <img src="" style="width: 50px; height: 35px;" alt="photos" class="mr-2">
                                 @endif
                                 {{ $order->product->title }}
                             </th>

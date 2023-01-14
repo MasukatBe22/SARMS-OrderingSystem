@@ -88,7 +88,7 @@
                                 @if ($prod->photo)
                                   <img src="{{ url('storage/photo/'.$prod->photo) }}" style="width: 50px; height: 35px;" alt="photos" class="mr-2">
                                 @else
-                                  <img src="{{ asset('noimage.png') }}" style="width: 50px;" alt="photos" class="mr-2">
+                                  <img src="{{ asset('noimage.png') }}" style="width: 50px; height: 35px;" alt="photos" class="mr-2">
                                 @endif
                                 {{ $prod->title }}
                               </td>
