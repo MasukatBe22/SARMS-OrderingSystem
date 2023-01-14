@@ -31,6 +31,17 @@
                     icon: event.detail.type,
                 });
             });
+
+            const el = document.createElement('div')
+            el.innerHTML = "Here's a <a href={{ route('account') }}>link</a>"
+            window.addEventListener('swal:modal2', event => {
+                swal({
+                    title: event.detail.title,
+                    text: event.detail.text,
+                    icon: event.detail.type,
+                    content: el,
+                });
+            });
         </script>
         <script>
             window.addEventListener('hide-form', event => {

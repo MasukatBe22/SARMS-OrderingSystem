@@ -75,7 +75,7 @@
                                                 <select class="form-control" wire:change="setChef({{ $order }}, $event.target.value)" >
                                                     <option value="" {{ is_null($order->chef_id) ? "selected disabled" : "" }}>Select Chef</option>
                                                     @foreach($users as $user)
-                                                        <option value="{{ $user->chef_id }}" {{ $order->chef_id === $user->chef_id ? "selected" : "" }}>{{ $user->fname }} {{ $user->lname }}</option>
+                                                        <option value="{{ $user->id }}" {{ $order->chef_id === $user->id ? "selected" : "" }}>{{ $user->fname }} {{ $user->lname }}</option>
                                                     @endforeach
                                                 </select>
                                             </th>

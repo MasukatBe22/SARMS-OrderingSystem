@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Chef\Dashboard;
 
+use App\Models\Chef;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Carbon;
@@ -61,19 +62,20 @@ class ChefDashboard extends ChefComponent
 
     public function render()
     {
+        $chefID = Chef::where('chef_id', auth()->user()->id)->value('id');
         $customer = Order::with('customer')->get();
         $product = Product::all(); 
         $orders = Order::query()
             ->whereIn('status', ['Assigned', 'Cooking', 'Cooked'])
-            ->where('chef_id', Auth::user()->id)
+            ->where('chef_id', $chefID)
             ->orderBy($this->sortColumnName, $this->sortDirection)
             ->whereDay('created_at', Carbon::today('America/Chicago'))
             ->paginate(10);
         $today = Order::when($this->status, function ($query, $status) {
             return $query->where('status', $status);
         })->where('chef_id', Auth::user()->id)->whereDay('created_at', Carbon::today('America/Chicago'))->orderBy('created_at', 'desc')->paginate(5);
-        $PickupOrder = Order::where('status', 'Pick-up')->where('chef_id', Auth::user()->id)->count();
-        $CancelOrder = Order::where('status', 'Cancel')->where('chef_id', Auth::user()->id)->count();
+        $PickupOrder = Order::where('status', 'Pick-up')->where('chef_id', $chefID)->count();
+        $CancelOrder = Order::where('status', 'Cancel')->where('chef_id', $chefID)->count();
 
         return view('livewire.chef.dashboard.chef-dashboard', [
             'orders' => $orders,

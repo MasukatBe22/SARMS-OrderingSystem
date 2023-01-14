@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
 use Livewire\Component;
+use App\Models\Customer;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,25 +23,42 @@ class OrdersCart extends Component
     {
         $this->prods_id = $prodid;
 
-        $this->dispatchBrowserEvent('show-form');
-        $this->emitSelf('refresh-me');
+        if (empty(Customer::where('customer_id', auth()->user()->id)->value('address') && Customer::where('customer_id', auth()->user()->id)->value('mobile'))) {
+            $this->dispatchBrowserEvent('swal:modal2', [
+                'type' => 'warning',
+                'title' => 'Please set your contact info!',
+                'text' => ''
+            ]);
+        } else {
+            $this->dispatchBrowserEvent('show-form');
+            $this->emitSelf('refresh-me');
+        }
     }
 
     public function newOrder($prodID)
     {
         $this->prods_id = $prodID;
 
-        $this->dispatchBrowserEvent('show-form');
-        $this->emitSelf('refresh-me');
+        if (empty(Customer::where('customer_id', auth()->user()->id)->value('address') && Customer::where('customer_id', auth()->user()->id)->value('mobile'))) {
+            $this->dispatchBrowserEvent('swal:modal2', [
+                'type' => 'warning',
+                'title' => 'Please set your contact info!',
+                'text' => ''
+            ]);
+        } else {
+            $this->dispatchBrowserEvent('show-form');
+            $this->emitSelf('refresh-me');
+        }
     }
 
     public function createOrder()
     {
+        $customer = Customer::where('customer_id', auth()->user()->id)->value('id');
         $validateData = Validator::make([
             'quantity' => $this->quan,
             'type' => $this->typ,
             'status' => 'New',
-            'customer_id' => auth()->user()->id,
+            'customer_id' => $customer,
             'product_id' => $this->prods_id,
         ], [
             'quantity' => 'required',
@@ -88,8 +106,9 @@ class OrdersCart extends Component
 
     public function render()
     {
-        $orders = Order::where('customer_id', auth()->user()->id)->orderBy('id', 'desc')->paginate(0);
-        $carts = Cart::where('customer_id', auth()->user()->id)->orderBy('id', 'desc')->paginate(0);
+        $customer = Customer::where('customer_id', auth()->user()->id)->value('id');
+        $orders = Order::where('customer_id', $customer)->orderBy('id', 'desc')->paginate(0);
+        $carts = Cart::where('customer_id', $customer)->orderBy('id', 'desc')->paginate(0);
         $product = Cart::with('product')->get();
         $prods = Product::where('status', 'available')->orderBy('id', 'desc')->get();
         return view('livewire.user.orders-cart', ['product' => $product, 'carts' => $carts, 'prods' => $prods, 'orders' => $orders])->layout('layouts.order');

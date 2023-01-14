@@ -50,6 +50,8 @@
                                 <i class="fa fa-arrow-down {{ $sortColumnName === 'customer_id' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
                             </span>
                         </th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Contact Number</th>
                         <th scope="col">Product
                             <span wire:click="sortBy('product_id')" class="float-right" style="cursor: pointer">
                                 <i class="fa fa-arrow-up {{ $sortColumnName === 'product_id' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
@@ -84,6 +86,8 @@
                             <th scope="col">{{ $orders->firstItem() + $index }}</th>
                             <th scope="col">{{ $order->id }}</th>
                             <th scope="col">{{ $order->customer->fname }} {{ $order->customer->lname }}</th>
+                            <th scope="col">{{ $order->customer->address }}</th>
+                            <th scope="col">{{ $order->customer->mobile }}</th>
                             <th scope="col">
                                 @if ($order->product->photo)
                                     <img src="{{ url('storage/photo/'.$order->product->photo) }}" style="width: 50px;" alt="photos" class="mr-2">
@@ -120,7 +124,7 @@
                         </tr>
                     @empty
                         <tr class="text-center">
-                            <td colspan="9">
+                            <td colspan="11">
                             <img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/v2/assets/empty.svg" alt="No results found">
                             <p class="mt-2">No results found</p> 
                             </td>
