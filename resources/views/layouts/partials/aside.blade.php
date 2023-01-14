@@ -15,7 +15,11 @@
           <img src="{{ auth()->user()->avatar_url }}" id="profileImage" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="{{ route('admin.profile.edit') }}" class="d-block" x-ref="username">{{ auth()->user()->name }}</a>
+          @if (auth()->user()->role === 'admin')
+            <a href="{{ route('admin.profile.edit') }}" class="d-block" x-ref="username">{{ auth()->user()->fname }} {{ auth()->user()->lname }}</a>
+          @else
+            <a href="{{ route('chef.profile.edit') }}" class="d-block" x-ref="username">{{ auth()->user()->fname }} {{ auth()->user()->lname }}</a>
+          @endif
         </div>
       </div>
 

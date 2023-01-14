@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Admin\Dashboard;
 
-use App\Models\User;
 use Livewire\Component;
+use App\Models\Customer;
 
 class CustomerCount extends Component
 {
@@ -11,7 +11,7 @@ class CustomerCount extends Component
 
     public function mount()
     {
-        $this->customerCount = User::where('role', 'user')->count();
+        $this->customerCount = Customer::count();
     }
 
     public function render()

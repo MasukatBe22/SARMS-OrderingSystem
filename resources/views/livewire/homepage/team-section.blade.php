@@ -15,7 +15,7 @@
 						<img src="{{ asset('noimage.png') }}" alt="">
 					@endif
 				</div>
-				<h4>{{ $chef->name }}</h4>
+				<h4>{{ $chef->fname }} {{ $chef->lname }}</h4>
 				<p>Executive Chef</p>
 			</div>
 			@empty

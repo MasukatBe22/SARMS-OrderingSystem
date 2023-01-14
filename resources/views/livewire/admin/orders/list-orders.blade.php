@@ -53,7 +53,7 @@
                                         <tr>
                                             <th scope="col">{{ $orders->firstItem() + $index }}</th>
                                             <th scope="col">{{ $order->id }}</th>
-                                            <th scope="col">{{ $order->customer->name }}</th>
+                                            <th scope="col">{{ $order->customer->fname }} {{ $order->customer->lname }}</th>
                                             <th scope="col">
                                                 @if ($order->product->photo)
                                                     <img src="{{ url('storage/photo/'.$order->product->photo) }}" style="width: 50px;" alt="photos" class="mr-2">
@@ -75,7 +75,7 @@
                                                 <select class="form-control" wire:change="setChef({{ $order }}, $event.target.value)" >
                                                     <option value="" {{ is_null($order->chef_id) ? "selected disabled" : "" }}>Select Chef</option>
                                                     @foreach($users as $user)
-                                                        <option value="{{ $user->id }}" {{ $order->chef_id === $user->id ? "selected" : "" }}>{{ $user->name }}</option>
+                                                        <option value="{{ $user->chef_id }}" {{ $order->chef_id === $user->chef_id ? "selected" : "" }}>{{ $user->fname }} {{ $user->lname }}</option>
                                                     @endforeach
                                                 </select>
                                             </th>

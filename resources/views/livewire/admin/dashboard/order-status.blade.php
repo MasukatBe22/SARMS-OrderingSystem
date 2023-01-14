@@ -83,7 +83,7 @@
                         <tr>
                             <th scope="col">{{ $orders->firstItem() + $index }}</th>
                             <th scope="col">{{ $order->id }}</th>
-                            <th scope="col">{{ $order->customer->name }}</th>
+                            <th scope="col">{{ $order->customer->fname }} {{ $order->customer->lname }}</th>
                             <th scope="col">
                                 @if ($order->product->photo)
                                     <img src="{{ url('storage/photo/'.$order->product->photo) }}" style="width: 50px;" alt="photos" class="mr-2">
@@ -154,7 +154,7 @@
                         <tr>
                             <th scope="col">{{ $everything->firstItem() + $index }}</th>
                             <th scope="col">{{ $all->id }}</th>
-                            <th scope="col">{{ $all->customer->name }}</th>
+                            <th scope="col">{{ $order->customer->fname }} {{ $order->customer->lname }}</th>
                             <th scope="col">
                                 @if ($all->product->photo)
                                     <img src="{{ url('storage/photo/'.$all->product->photo) }}" style="width: 50px;" alt="photos" class="mr-2">

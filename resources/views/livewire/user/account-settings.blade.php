@@ -22,7 +22,7 @@
                                 </div>
                             </div>
 						</div>
-						<h4 class="text-center">{{ auth()->user()->name }}</h4>
+						<h4 class="text-center">{{ auth()->user()->fname }} {{ auth()->user()->lname }}</h4>
 					</div>
 					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 						<a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
@@ -47,8 +47,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Fullname</label>
-                                            <input wire:model.defer="state.name" type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Fullname">
+                                            <label for="fname">Firstname</label>
+                                            <input wire:model.defer="state.fname" type="text" class="form-control @error('fname') is-invalid @enderror" id="fname" placeholder="Firstname">
                                         </div>
     
                                         @error('name')
@@ -59,8 +59,20 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <label for="lname">Lastname</label>
+                                            <input wire:model.defer="state.lname" type="text" class="form-control @error('lname') is-invalid @enderror" id="lname" placeholder="Lastname">
+                                        </div>
+    
+                                        @error('lname')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
                                             <label for="address">Address</label>
-                                            <input wire:model.defer="state.address" type="text" class="form-control @error('address') is-invalid @enderror" id="addrress" placeholder="Address">
+                                            <input wire:model="address" type="text" class="form-control @error('address') is-invalid @enderror" id="addrress" placeholder="Address">
                                         </div>
     
                                         @error('address')
@@ -84,7 +96,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="mobile">Phone number</label>
-                                            <input wire:model.defer="state.mobile" type="number" class="form-control @error('mobile') is-invalid @enderror" id="mobile" placeholder="Mobile Number">
+                                            <input wire:model="mobile" type="number" class="form-control @error('mobile') is-invalid @enderror" id="mobile" placeholder="Mobile Number">
                                         </div>
     
                                         @error('mobile')
@@ -96,7 +108,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="bio">Bio</label>
-                                            <textarea wire:model.defer="state.bio" class="form-control @error('bio') is-invalid @enderror" rows="4" id="bio" placeholder="About me"></textarea>
+                                            <textarea wire:model="bio" class="form-control @error('bio') is-invalid @enderror" rows="4" id="bio" placeholder="About me"></textarea>
                                             
                                             @error('bio')
                                                 <span class="invalid-feedback" role="alert">

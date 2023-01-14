@@ -18,7 +18,7 @@
 						<p>{{ $prod->description }}</p>
 						<div class="bottom-contents">
 							@if (Auth::check() && Auth::user()->role === 'user')
-								@if (DB::table('carts')->where('user_id', auth()->user()->id)->where('prod_id', $prod->id)->exists())
+								@if (DB::table('carts')->where('customer_id', auth()->user()->id)->where('product_id', $prod->id)->exists())
 									<li style="background: #7dd87d; border-radius: 50%; height: 4rem; width: 4rem; transition: 1s linear;"><a href="" wire:click.prevent="addtoCart({{ $prod->id }})" class='bx bxs-cart' style="line-height: 4rem; font-size: 2rem; color: #ffffff; display: flex; justify-content: center;"></a></li>
 								@else
 									<li><a href="" wire:click.prevent="addtoCart({{ $prod->id }})" class='bx bxs-cart'></a></li>

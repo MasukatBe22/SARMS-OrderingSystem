@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Admin\Dashboard;
 
+use App\Models\Product;
 use Livewire\Component;
-use App\Models\Products;
 
 class ProductCount extends Component
 {
@@ -16,7 +16,7 @@ class ProductCount extends Component
 
     public function getproductCount($status = null)
     {
-        $this->productCount = Products::query()
+        $this->productCount = Product::query()
             ->when($status, function ($query, $status){
                 return $query->where('status', $status);
             })

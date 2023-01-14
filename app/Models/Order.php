@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Products;
+use App\Models\Chef;
+use App\Models\Product;
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -12,23 +13,23 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'chef_id',
-        'customer_id',
-        'product_id',
         'quantity',
         'type',
         'status',
+        'chef_id',
+        'customer_id',
+        'product_id',
     ];
 
     public function chef(){
-        return $this->belongsTo(User::class, 'chef_id');
+        return $this->belongsTo(Chef::class, 'chef_id');
     }
 
     public function customer(){
-        return $this->belongsTo(User::class, 'customer_id');
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 
     public function product(){
-        return $this->belongsTo(Products::class, 'product_id');
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }

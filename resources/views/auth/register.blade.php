@@ -11,10 +11,20 @@
                     <form method="POST" action="{{ route('register') }}" class="register-form" id="register-form">
                         @csrf
                         <div class="form-group">
-                            <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Your Name"/>
+                            <label for="fname"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" class="form-control @error('fname') is-invalid @enderror" name="fname" id="fname" value="{{ old('fname') }}" required autocomplete="fname" autofocus placeholder="Your Firstname"/>
                             
-                            @error('name')
+                            @error('fname')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="lname"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" class="form-control @error('lname') is-invalid @enderror" name="lname" id="lname" value="{{ old('lname') }}" required autocomplete="lname" autofocus placeholder="Your Lastname"/>
+                            
+                            @error('lname')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -25,26 +35,6 @@
                             <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Your Email"/>
                         
                             @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="address"><i class="zmdi zmdi-pin-drop"></i></label>
-                            <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" id="address" value="{{ old('address') }}" required autocomplete="address" autofocus placeholder="Your Address"/>
-                            
-                            @error('address')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="mobile"><i class="zmdi zmdi-smartphone-android"></i></label>
-                            <input type="number" class="form-control @error('mobile') is-invalid @enderror" name="mobile" id="mobile" value="{{ old('mobile') }}" required autocomplete="mobile" autofocus placeholder="Your Mobile Number"/>
-                            
-                            @error('mobile')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

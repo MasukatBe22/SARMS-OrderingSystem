@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\Dashboard;
 
 use App\Models\Order;
-use App\Models\Products;
+use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Livewire\Admin\AdminComponent;
 
@@ -48,7 +48,7 @@ class OrderStatus extends AdminComponent
     public function render()
     {
         $customer = Order::with('customer')->get();
-        $product = Products::all();
+        $product = Product::all();
         $orders = Order::when($this->status, function ($query, $status) {
             return $query->where('status', $status);
         })->orderBy($this->sortColumnName, $this->sortDirection)->paginate(5);

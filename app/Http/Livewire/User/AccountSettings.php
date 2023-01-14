@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\User;
 
 use Livewire\Component;
+use App\Models\Customer;
 use Illuminate\Support\Arr;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
@@ -16,23 +17,36 @@ class AccountSettings extends Component
     
     public $image;
     public $state = [];
+    public $address;
+    public $mobile;
+    public $bio;
+
 
     public function mount()
     {
-        $this->state = Auth::user()->only(['name', 'email', 'address', 'mobile', 'bio']);
+        $this->state = Auth::user()->only(['fname', 'lname', 'email']);
+        $this->address = Customer::where('customer_id', auth()->user()->id)->value('address');
+        $this->mobile = Customer::where('customer_id', auth()->user()->id)->value('mobile');
+        $this->bio = Customer::where('customer_id', auth()->user()->id)->value('bio');
     }
 
     public function updateProfile()
     {
         $validateData = Validator::make($this->state, [
-            'name' => 'required',
+            'fname' => 'required',
+            'lname' => 'required',
             'email' => 'required',
-            'address' => 'required',
-            'mobile' => 'required',
-            'bio' => 'sometimes|nullable'
         ])->validate();
 
         Auth::user()->update($validateData);
+        Customer::where('customer_id', auth()->user()->id)->update([
+            'fname' => $this->state['fname'],
+            'lname' => $this->state['lname'],
+            'address' => $this->address,
+            'mobile' => $this->mobile,
+            'bio' => $this->bio,
+        ]);
+
         $this->dispatchBrowserEvent('swal:modal', [
             'type' => 'success',
             'title' => 'Profile changed successfully!',

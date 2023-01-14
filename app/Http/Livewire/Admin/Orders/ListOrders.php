@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin\Orders;
 
-use App\Models\User;
+use App\Models\Chef;
 use App\Models\Order;
-use App\Models\Products;
+use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Livewire\Admin\AdminComponent;
 
@@ -30,9 +30,9 @@ class ListOrders extends AdminComponent
     
     public function render()
     {
-        $users = User::where('role', User::ROLE_CHEF)->get();
+        $users = Chef::all();
         $customer = Order::with('customer')->get();
-        $product = Products::all();
+        $product = Product::all();
         $orders = Order::when($this->status, function ($query, $status) {
             return $query->where('status', $status);
         })->latest()->paginate(10);

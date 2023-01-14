@@ -57,7 +57,7 @@
                                         <tr>
                                             <th scope="col">{{ $loop->iteration }}</th>
                                             <th scope="col">{{ $order->id }}</th>
-                                            <th scope="col">{{ $order->customer->name }}</th>
+                                            <th scope="col">{{ $order->customer->fname }} {{ $order->customer->lname }}</th>
                                             <th scope="col">
                                                 @if ($order->product->photo)
                                                     <img src="{{ url('storage/photo/'.$order->product->photo) }}" style="width: 50px;" alt="photos" class="mr-2">
@@ -139,7 +139,7 @@
                                         <tr>
                                             <th scope="col">{{ $loop->iteration }}</th>
                                             <th scope="col">{{ $tdy->id }}</th>
-                                            <th scope="col">{{ $tdy->customer->name }}</th>
+                                            <th scope="col">{{ $tdy->customer->fname }} {{ $order->customer->lname }}</th>
                                             <th scope="col">
                                                 @if ($tdy->product->photo)
                                                     <img src="{{ url('storage/photo/'.$tdy->product->photo) }}" style="width: 50px;" alt="photos" class="mr-2">

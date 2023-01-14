@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Homepage;
 
+use App\Models\Product;
 use Livewire\Component;
-use App\Models\Products;
 use Livewire\WithPagination;
 
 class HomeSection extends Component
@@ -12,9 +12,9 @@ class HomeSection extends Component
     
     public function render()
     {
-        $pro = Products::select('photo')->where('status', 'available')->orderBy('id', 'desc')->first();
+        $pro = Product::select('photo')->where('status', 'available')->orderBy('id', 'desc')->first();
              
-        $products = Products::where('status', 'available')->orderBy('id', 'desc')->paginate(8);
+        $products = Product::where('status', 'available')->orderBy('id', 'desc')->paginate(8);
         return view('livewire.homepage.home-section', ['products' => $products, 'pro' => $pro]);
     }
 }

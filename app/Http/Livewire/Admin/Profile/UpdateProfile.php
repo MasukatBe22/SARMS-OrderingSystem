@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Profile;
 
+use App\Models\Admin;
 use Livewire\Component;
 use Illuminate\Support\Arr;
 use Livewire\WithFileUploads;
@@ -19,7 +20,7 @@ class UpdateProfile extends Component
 
     public function mount()
     {
-        $this->state = Auth::user()->only(['name', 'email']);
+        $this->state = Auth::user()->only(['fname', 'lname', 'email']);
     }
     
     public function updatedImage()
@@ -36,11 +37,16 @@ class UpdateProfile extends Component
     public function updateProfile(UpdatesUserProfileInformation $updater)
     {
         $updater->update(auth()->user(), [
-            'name' => $this->state['name'],
-            'email' => $this->state['email']
+            'fname' => $this->state['fname'],
+            'lname' => $this->state['lname'],
+            'email' => $this->state['email'],
+        ]);
+        Admin::where('admin_id', auth()->user()->id)->update([
+            'fname' => $this->state['fname'],
+            'lname' => $this->state['lname'],
         ]);
 
-        $this->emit('nameChanged', auth()->user()->name);
+        $this->emit('nameChanged', auth()->user()->fname, auth()->user()->lname);
         $this->dispatchBrowserEvent('updated', ['message' => 'Profile updated successfully!']);
     }
 

@@ -25,7 +25,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user-cog mr-1"></i>
-                <span class="font-weight-bold ml-1" x-ref="username"> {{ auth()->user()->name }}</span>
+                <span class="font-weight-bold ml-1" x-ref="username"> {{ auth()->user()->fname }} {{ auth()->user()->lname }}</span>
             </a>
             @if ( auth()->user()->role === 'admin' )
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Chef\Profile;
 
+use App\Models\Chef;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -15,10 +16,16 @@ class ChefBio extends ChefComponent
     
     public $image;
     public $state = [];
+    public $address;
+    public $mobile;
+    public $bio;
 
     public function mount()
     {
-        $this->state = Auth::user()->only(['name', 'email', 'address', 'mobile', 'bio']);
+        $this->state = Auth::user()->only(['fname', 'lname', 'email']);
+        $this->address = Chef::where('chef_id', auth()->user()->id)->value('address');
+        $this->mobile = Chef::where('chef_id', auth()->user()->id)->value('mobile');
+        $this->bio = Chef::where('chef_id', auth()->user()->id)->value('bio');
     }
 
     public function updatedImage()
@@ -35,23 +42,28 @@ class ChefBio extends ChefComponent
     public function updateProfile(UpdatesUserProfileInformation $updater)
     {
         $updater->update(auth()->user(), [
-            'name' => $this->state['name'],
-            'email' => $this->state['email']
+            'fname' => $this->state['fname'],
+            'lname' => $this->state['lname'],
+            'email' => $this->state['email'],
+        ]);
+        Chef::where('chef_id', auth()->user()->id)->update([
+            'fname' => $this->state['fname'],
+            'lname' => $this->state['lname'],
         ]);
 
-        $this->emit('nameChanged', auth()->user()->name);
+        $this->emit('nameChanged', auth()->user()->fname, auth()->user()->lname);
         $this->dispatchBrowserEvent('updated', ['message' => 'Profile updated successfully!']);
     }
 
     public function updateInfo()
     {
-        $validateData = Validator::make($this->state, [
+        $validateData = Validator::make(['address' => $this->address, 'mobile' => $this->mobile, 'bio' => $this->bio], [
             'address' => 'required',
             'mobile' => 'required',
             'bio' => 'sometimes|nullable'
         ])->validate();
 
-        Auth::user()->update($validateData);
+        Chef::where('chef_id', auth()->user()->id)->update($validateData);
         $this->dispatchBrowserEvent('updated', ['message' => 'Profile updated successfully!']);
     }
 

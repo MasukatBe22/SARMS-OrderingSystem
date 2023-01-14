@@ -50,7 +50,7 @@
                             @forelse ($users as $index => $user)
                               <tr>
                                 <th scope="row">{{ $users->firstItem() + $index }}</th>
-                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->fname }} {{ $user->lname }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td>
@@ -109,9 +109,18 @@
             </div>
             <div class="modal-body">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" wire:model.defer="state.name" class="form-control @error('name')is-invalid @enderror" id="name" aria-describedby="nameHelp" placeholder="Enter Fullname">
-                        @error('name')
+                        <label for="fname" class="form-label">Firstname</label>
+                        <input type="text" wire:model.defer="state.fname" class="form-control @error('fname')is-invalid @enderror" id="fname" aria-describedby="nameHelp" placeholder="Enter Firstname">
+                        @error('fname')
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
+                        @enderror
+                      </div>
+                      <div class="mb-3">
+                        <label for="lname" class="form-label">Lastname</label>
+                        <input type="text" wire:model.defer="state.lname" class="form-control @error('lname')is-invalid @enderror" id="lname" aria-describedby="nameHelp" placeholder="Enter Lastname">
+                        @error('lname')
                           <div class="invalid-feedback">
                             {{ $message }}
                           </div>

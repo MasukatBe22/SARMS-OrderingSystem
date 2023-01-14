@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Products;
 
-use App\Models\Products;
+use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Livewire\Admin\AdminComponent;
@@ -21,7 +21,7 @@ class ListProducts extends AdminComponent
     public function edit(int $product_id)
     {
         $this->selectedProductId = $product_id;
-        $this->state = Products::findOrFail($product_id)->toArray();
+        $this->state = Product::findOrFail($product_id)->toArray();
         $this->dispatchBrowserEvent('show-form');
     }
 
@@ -34,7 +34,7 @@ class ListProducts extends AdminComponent
             'status' => 'required',
         ])->validate();
 
-        Products::findOrFail($this->selectedProductId)->update($validateData);
+        Product::findOrFail($this->selectedProductId)->update($validateData);
         $this->dispatchBrowserEvent('hide-form', ['message' => 'Product created successfully']);
     }
 
@@ -46,7 +46,7 @@ class ListProducts extends AdminComponent
 
     public function deleteProduct()
     {
-        $products = Products::findOrFail($this->productIdBeingRemoved);
+        $products = Product::findOrFail($this->productIdBeingRemoved);
         if (!empty($products->photo)){
             Storage::disk('photo')->delete($products->photo);
         }
@@ -72,7 +72,7 @@ class ListProducts extends AdminComponent
 
     public function getProductsProperty()
     {
-        return Products::when($this->status, function ($query, $status) {
+        return Product::when($this->status, function ($query, $status) {
             return $query->where('status', $status);
         })
         ->latest()->paginate(10);
@@ -80,8 +80,8 @@ class ListProducts extends AdminComponent
 
     public function deleteSelectedRows()
     {
-        $productArray = Products::whereIn('id', $this->selectedRows);
-        $photos = Products::whereIn('id', $this->selectedRows)->pluck('photo');
+        $productArray = Product::whereIn('id', $this->selectedRows);
+        $photos = Product::whereIn('id', $this->selectedRows)->pluck('photo');
         foreach ($photos as $photos) {
             if (!empty($photos)){
                 Storage::disk('photo')->delete($photos);
@@ -94,14 +94,14 @@ class ListProducts extends AdminComponent
 
     public function markAllAsAvailable()
 	{
-		Products::whereIn('id', $this->selectedRows)->update(['status' => 'Available']);
+		Product::whereIn('id', $this->selectedRows)->update(['status' => 'Available']);
 		$this->dispatchBrowserEvent('updated', ['message' => 'Productss marked as available']);
 		$this->reset(['selectPageRows', 'selectedRows']);
 	}
 
 	public function markAllAsUnavailable()
 	{
-		Products::whereIn('id', $this->selectedRows)->update(['status' => 'Unavailable']);
+		Product::whereIn('id', $this->selectedRows)->update(['status' => 'Unavailable']);
 		$this->dispatchBrowserEvent('updated', ['message' => 'Productss marked as unavailable.']);
 		$this->reset(['selectPageRows', 'selectedRows']);
 	}
@@ -110,9 +110,9 @@ class ListProducts extends AdminComponent
     {
         $products = $this->products;
 
-        $ProductsCount = Products::count();
-    	$AvailableProductsCount = Products::where('status', 'Available')->count();
-    	$UnavailableProductsCount = Products::where('status', 'Unavailable')->count();
+        $ProductsCount = Product::count();
+    	$AvailableProductsCount = Product::where('status', 'Available')->count();
+    	$UnavailableProductsCount = Product::where('status', 'Unavailable')->count();
             
         return view('livewire.admin.products.list-products', [
             'products' => $products,

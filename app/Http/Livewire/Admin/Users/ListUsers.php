@@ -2,7 +2,10 @@
 
 namespace App\Http\Livewire\Admin\Users;
 
+use App\Models\Chef;
 use App\Models\User;
+use App\Models\Admin;
+use App\Models\Customer;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Livewire\Admin\AdminComponent;
@@ -27,6 +30,46 @@ class ListUsers extends AdminComponent
         ]);
 
         $user->update(['role' => $role]);
+        $userID = $user->id;
+        $this->state = User::findOrFail($userID)->toArray();
+        if($this->state['role'] === 'admin'){
+            Customer::where('customer_id', $userID)->delete();
+            Chef::where('chef_id', $userID)->delete();
+            Validator::make([
+                'admin_id' => $this->state['id'],
+                'fname' => $this->state['fname'],
+                'lname' => $this->state['lname']], [
+                'admin_id' => 'required',
+                'fname' => 'required',
+                'lname' => 'required',
+            ]);
+            Admin::create(['admin_id' => $this->state['id'], 'fname' => $this->state['fname'], 'lname' => $this->state['lname']]);
+        } elseif ($this->state['role'] === 'chef'){
+            Customer::where('customer_id', $userID)->delete();
+            Admin::where('admin_id', $userID)->delete();
+            Validator::make([
+                'chef_id' => $this->state['id'],
+                'fname' => $this->state['fname'],
+                'lname' => $this->state['lname']], [
+                'admin_id' => 'required',
+                'fname' => 'required',
+                'lname' => 'required',
+            ]);
+            Chef::create(['chef_id' => $this->state['id'], 'fname' => $this->state['fname'], 'lname' => $this->state['lname']]);
+        } else {
+            Chef::where('chef_id', $userID)->delete();
+            Admin::where('admin_id', $userID)->delete();
+            Validator::make([
+                'customer_id' => $this->state['id'],
+                'fname' => $this->state['fname'],
+                'lname' => $this->state['lname']], [
+                'admin_id' => 'required',
+                'fname' => 'required',
+                'lname' => 'required',
+            ]);
+            Customer::create(['customer_id' => $this->state['id'], 'fname' => $this->state['fname'], 'lname' => $this->state['lname']]);
+        }
+
         $this->dispatchBrowserEvent('updated', ['message' => "Role changed to {$role} successfully."]);
     }
 
@@ -40,13 +83,27 @@ class ListUsers extends AdminComponent
     public function createUser()
     {
         $validatedData = Validator::make($this->state, [
-            'name' => 'required',
+            'fname' => 'required',
+            'lname' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
         ])->validate();
         
         $validatedData['password'] = bcrypt($validatedData['password']);
-        User::create($validatedData);
+
+        $user = User::create($validatedData);
+        $userID = $user->id;
+        $this->state = User::findOrFail($userID)->toArray();
+        Validator::make([
+            'customer_id' => $this->state['id'],
+            'fname' => $this->state['fname'],
+            'lname' => $this->state['lname']], [
+            'admin_id' => 'required',
+            'fname' => 'required',
+            'lname' => 'required',
+        ]);
+        Customer::create(['customer_id' => $this->state['id'], 'fname' => $this->state['fname'], 'lname' => $this->state['lname']]);
+
         $this->dispatchBrowserEvent('hide-form', ['message' => 'User added successfully!']);
     }
 
@@ -61,7 +118,8 @@ class ListUsers extends AdminComponent
     public function updateUser()
     {
         $validatedData = Validator::make($this->state, [
-            'name' => 'required',
+            'fname' => 'required',
+            'lname' => 'required',
             'email' => 'required|email|unique:users,email,'.$this->user->id,
             'password' => 'sometimes|confirmed',
         ])->validate();
@@ -69,7 +127,46 @@ class ListUsers extends AdminComponent
         if (!empty($validatedData['password'])){
             $validatedData['password'] = bcrypt($validatedData['password']);
         }
+
         $this->user->update($validatedData);
+        
+        $userID = $this->user->id;
+        $this->state = User::findOrFail($userID)->toArray();
+        if($this->state['role'] === 'admin'){
+            Validator::make([
+                'fname' => $this->state['fname'],
+                'lname' => $this->state['lname']], [
+                'fname' => 'required',
+                'lname' => 'required',
+            ]);
+            Admin::where('admin_id', $this->state['id'])->update([
+                'fname' => $this->state['fname'],
+                'lname' => $this->state['lname'],
+            ]);
+        } elseif ($this->state['role'] === 'chef'){
+            Validator::make([
+                'fname' => $this->state['fname'],
+                'lname' => $this->state['lname']], [
+                'fname' => 'required',
+                'lname' => 'required',
+            ]);
+            Chef::where('chef_id', $this->state['id'])->update([
+                'fname' => $this->state['fname'],
+                'lname' => $this->state['lname'],
+            ]);
+        } else {
+            Validator::make([
+                'fname' => $this->state['fname'],
+                'lname' => $this->state['lname']], [
+                'fname' => 'required',
+                'lname' => 'required',
+            ]);
+            Customer::where('customer_id', $this->state['id'])->update([
+                'fname' => $this->state['fname'],
+                'lname' => $this->state['lname'],
+            ]);
+        }
+
         $this->dispatchBrowserEvent('hide-form', ['message' => 'User updated successfully!']);
     }
 
@@ -82,7 +179,18 @@ class ListUsers extends AdminComponent
     public function deleteUser()
     {
         $user = User::findOrFail($this->userIdBeingRemoved);
-        $user->delete();
+
+        if ($user->role === 'admin') {
+            Admin::where('admin_id', $this->userIdBeingRemoved)->delete();
+            $user->delete();
+        } elseif ($user->role === 'chef') {
+            Chef::where('chef_id', $this->userIdBeingRemoved)->delete();
+            $user->delete();
+        } else {
+            Customer::where('customer_id', $this->userIdBeingRemoved)->delete();
+            $user->delete();
+        }
+        
         $this->dispatchBrowserEvent('hide-delete-modal', ['message' => 'User deleted successfully!']);
     }
 
@@ -110,7 +218,8 @@ class ListUsers extends AdminComponent
     public function render()
     {
         $users = User::query()
-            ->where('name', 'like', '%'.$this->searchTerm.'%')
+            ->where('fname', 'like', '%'.$this->searchTerm.'%')
+            ->orwhere('lname', 'like', '%'.$this->searchTerm.'%')
             ->orwhere('email', 'like', '%'.$this->searchTerm.'%')
             ->orwhere('created_at', 'like', '%'.$this->searchTerm.'%')
             ->orderBy($this->sortColumnName, $this->sortDirection)->paginate(10);

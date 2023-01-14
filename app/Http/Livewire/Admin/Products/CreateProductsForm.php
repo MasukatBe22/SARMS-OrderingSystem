@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Admin\Products;
 
+use App\Models\Product;
 use Livewire\Component;
-use App\Models\Products;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,7 +29,7 @@ class CreateProductsForm extends Component
         if ($this->photo) {
             $validateData['photo'] = $this->photo->store('/', 'photo');
         }
-        Products::create($validateData); 
+        Product::create($validateData); 
         
         $this->dispatchBrowserEvent('hide-form', ['message' => 'Product created successfully']);
         $this->state = [

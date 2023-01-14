@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
@@ -15,13 +16,13 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Validate and create a newly registered user.
      *
-     * @param  array  $input
-     * @return \App\Models\User
+     * @param  array<string, string>  $input
      */
     public function create(array $input)
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+            'fname' => ['required', 'string', 'max:255'],
+            'lname' => ['required', 'string', 'max:255'],
             'email' => [
                 'required',
                 'string',
@@ -29,17 +30,24 @@ class CreateNewUser implements CreatesNewUsers
                 'max:255',
                 Rule::unique(User::class),
             ],
-            'address' => ['required', 'string', 'max:255'],
-            'mobile' => ['required', 'string', 'max:255'],
             'password' => $this->passwordRules(),
         ])->validate();
 
-        return User::create([
-            'name' => $input['name'],
+        $user = User::create([
+            'fname' => $input['fname'],
+            'lname' => $input['lname'],
             'email' => $input['email'],
-            'address' => $input['address'],
-            'mobile' => $input['mobile'],
             'password' => Hash::make($input['password']),
         ]);
+
+        $userId = $user->id;
+
+        Customer::create([
+            'customer_id' => $userId,
+            'fname' => $input['fname'],
+            'lname' => $input['lname'],
+        ]);
+
+        return $user;
     }
 }

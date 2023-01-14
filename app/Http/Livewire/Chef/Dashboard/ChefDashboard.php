@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Chef\Dashboard;
 
 use App\Models\Order;
-use App\Models\Products;
+use App\Models\Product;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\Chef\ChefComponent;
@@ -62,7 +62,7 @@ class ChefDashboard extends ChefComponent
     public function render()
     {
         $customer = Order::with('customer')->get();
-        $product = Products::all(); 
+        $product = Product::all(); 
         $orders = Order::query()
             ->whereIn('status', ['Assigned', 'Cooking', 'Cooked'])
             ->where('chef_id', Auth::user()->id)

@@ -23,14 +23,12 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'fname',
+        'lname',
         'email',
-        'address',
-        'mobile',
         'password',
-        'avatar',
         'role',
-        'bio',
+        'avatar',
     ];
 
     /**
@@ -46,6 +44,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'updated_at',
     ];
 
+    protected $appends = [
+        'avatar_url',
+    ];
+
     /**
      * The attributes that should be cast.
      *
@@ -53,10 +55,6 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
-
-    protected $appends = [
-        'avatar_url',
     ];
     
     public function isAdmin()

@@ -36,7 +36,7 @@
                                     "/>
                                 <img x-on:click="$refs.image.click()" class="profile-user-img img-circle" x-bind:src="imagePreview" alt="User profile picture" style="width: 120px; height: 120px;">
                             </div>
-                            <h3 class="profile-username text-center">{{ auth()->user()->name }}</h3>
+                            <h3 class="profile-username text-center">{{ auth()->user()->fname }} {{ auth()->user()->lname }}</h3>
                             <p class="text-muted text-center">Chef</p>
                         </div>
                     </div>
@@ -55,10 +55,21 @@
                                 <div class="tab-pane" :class="currentTab === 'chefProfile' ? 'active' : ''" id="chefProfile" wire:ignore.self>
                                     <form wire:submit.prevent="updateProfile" class="form-horizontal">
                                         <div class="form-group row">
-                                            <label for="inputname" class="col-sm-2 col-form-label">Name</label>
+                                            <label for="inputName" class="col-sm-2 col-form-label">Firstname</label>
                                             <div class="col-sm-10">
-                                                <input wire:model.defer="state.name" type="text" class="form-control @error('name') is-invalid @enderror" id="inputname" placeholder="name">
-                                                @error('name')
+                                                <input wire:model.defer="state.fname" type="text" class="form-control @error('fname') is-invalid @enderror" id="inputName" placeholder="Firstname">
+                                                @error('fname')
+                                                <div class="invalid-feedback">
+                                                    {{ $message}}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputName" class="col-sm-2 col-form-label">Lastname</label>
+                                            <div class="col-sm-10">
+                                                <input wire:model.defer="state.lname" type="text" class="form-control @error('lname') is-invalid @enderror" id="inputName" placeholder="Lastname">
+                                                @error('lname')
                                                 <div class="invalid-feedback">
                                                     {{ $message}}
                                                 </div>
@@ -88,7 +99,7 @@
                                     <form wire:submit.prevent="updateInfo" class="form-horizontal">
                                         <div class="form-group">
                                             <label for="address">Address:</label>
-                                            <input wire:model.defer="state.address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" id="address" value="{{ old('address') }}" required autocomplete="address" autofocus placeholder="Your address"/>
+                                            <input wire:model="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" id="address" required autocomplete="address" autofocus placeholder="Your address"/>
                                             
                                             @error('address')
                                                 <span class="invalid-feedback" role="alert">
@@ -98,7 +109,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="mobile">Contact Number:</label>
-                                            <input wire:model.defer="state.mobile" type="number" class="form-control @error('mobile') is-invalid @enderror" name="mobile" id="mobile" value="{{ old('mobile') }}" required autocomplete="mobile" autofocus placeholder="Your mobile"/>
+                                            <input wire:model="mobile" type="number" class="form-control @error('mobile') is-invalid @enderror" name="mobile" id="mobile" required autocomplete="mobile" autofocus placeholder="Your mobile"/>
                                         
                                             @error('mobile')
                                                 <span class="invalid-feedback" role="alert">
@@ -108,7 +119,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="bio">About me:</label>
-                                            <textarea wire:model.defer="state.bio" type="text" class="form-control @error('bio') is-invalid @enderror" name="bio" id="bio" value="{{ old('bio') }}" autocomplete="bio" autofocus placeholder="Your Bio"></textarea>
+                                            <textarea wire:model="bio" type="text" class="form-control @error('bio') is-invalid @enderror" name="bio" id="bio" autocomplete="bio" autofocus placeholder="Your Bio"></textarea>
                                         
                                             @error('bio')
                                                 <span class="invalid-feedback" role="alert">

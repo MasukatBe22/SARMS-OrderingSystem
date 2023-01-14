@@ -36,7 +36,7 @@
                                     "/>
                                 <img x-on:click="$refs.image.click()" class="profile-user-img img-circle" x-bind:src="imagePreview" alt="User profile picture" style="width: 120px; height: 120px;">
                             </div>
-                            <h3 class="profile-username text-center">{{ auth()->user()->name }}</h3>
+                            <h3 class="profile-username text-center">{{ auth()->user()->fname }} {{ auth()->user()->lname }}</h3>
                             <p class="text-muted text-center">Admin</p>
                         </div>
                     </div>
@@ -55,10 +55,21 @@
                                 <div class="tab-pane" :class="currentTab === 'profile' ? 'active' : ''" id="profile" wire:ignore.self>
                                     <form wire:submit.prevent="updateProfile" class="form-horizontal">
                                         <div class="form-group row">
-                                            <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                            <label for="inputName" class="col-sm-2 col-form-label">Firstname</label>
                                             <div class="col-sm-10">
-                                                <input wire:model.defer="state.name" type="text" class="form-control @error('name') is-invalid @enderror" id="inputName" placeholder="Name">
-                                                @error('name')
+                                                <input wire:model.defer="state.fname" type="text" class="form-control @error('fname') is-invalid @enderror" id="inputName" placeholder="Firstname">
+                                                @error('fname')
+                                                <div class="invalid-feedback">
+                                                    {{ $message}}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputName" class="col-sm-2 col-form-label">Lastname</label>
+                                            <div class="col-sm-10">
+                                                <input wire:model.defer="state.lname" type="text" class="form-control @error('lname') is-invalid @enderror" id="inputName" placeholder="Lastname">
+                                                @error('lname')
                                                 <div class="invalid-feedback">
                                                     {{ $message}}
                                                 </div>
@@ -68,7 +79,7 @@
                                         <div class="form-group row">
                                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
-                                                <input wire:model.defer="state.email" type="email" class="form-control @error('email') is-invalid @enderror" id="inputEmail" placeholder="Email">
+                                                <input wire:model.defer="state.email" type="email" class="form-control @error('email') is-invalid @enderror" id="inputEmail" placeholder="Email" disabled>
                                                 @error('email')
                                                 <div class="invalid-feedback">
                                                     {{ $message}}

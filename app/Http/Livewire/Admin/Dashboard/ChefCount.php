@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Dashboard;
 
-use App\Models\User;
+use App\Models\Chef;
 use Livewire\Component;
 
 class ChefCount extends Component
@@ -11,7 +11,7 @@ class ChefCount extends Component
 
     public function mount()
     {
-        $this->chefCount = User::where('role', 'chef')->count();
+        $this->chefCount = Chef::count();
     }
     
     public function render()

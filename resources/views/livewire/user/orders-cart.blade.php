@@ -40,7 +40,7 @@
 						<p>{{ $cart->product->description }}</p>
                         <h6>${{ $cart->product->price }}</h6>
 						<div class="order-contents-btn">
-                            <a href="" wire:click.prevent="newOrder({{ $cart->prod_id }})" type="button">Order Now</a>
+                            <a href="" wire:click.prevent="newCart({{ $cart->product_id }})" type="button">Order Now</a>
 						</div>
 						<div class="order-cart-btn">
 							<a href="" wire:click.prevent="removeCart({{ $cart->id }})" type="button">Remove</a>

@@ -10,7 +10,7 @@ class HomeNav extends Component
 {
     public function render()
     {
-        $Count = Cart::where('user_id',  Auth::user()->id)->count();
+        $Count = Cart::where('customer_id',  Auth::user()->id)->count();
         return view('livewire.homepage.home-nav', ['Count' => $Count]);
     }
 }
