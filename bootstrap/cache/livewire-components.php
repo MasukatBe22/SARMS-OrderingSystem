@@ -22,5 +22,6 @@
   'homepage.order-section' => 'App\\Http\\Livewire\\Homepage\\OrderSection',
   'homepage.team-section' => 'App\\Http\\Livewire\\Homepage\\TeamSection',
   'user.account-settings' => 'App\\Http\\Livewire\\User\\AccountSettings',
+  'user.history' => 'App\\Http\\Livewire\\User\\History',
   'user.orders-cart' => 'App\\Http\\Livewire\\User\\OrdersCart',
 );

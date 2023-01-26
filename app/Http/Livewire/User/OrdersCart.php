@@ -80,22 +80,6 @@ class OrdersCart extends Component
         ]);
     }
 
-    public function cancelOrder($orderID)
-    {
-        $order = Order::findOrFail($orderID);
-        Validator::make(['status' => 'Cancel'], [
-            'status' => 'required',
-        ]);
-
-        $order->update(['status' => 'Cancel']);
-
-        $this->dispatchBrowserEvent('swal:modal', [
-            'type' => 'success',
-            'title' => 'Order has been cancel!',
-            'text' => ''
-        ]);
-    }
-
     public function removeCart($ordID)
     {
         $cart = Cart::findOrFail($ordID);

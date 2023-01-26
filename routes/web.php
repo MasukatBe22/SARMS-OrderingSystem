@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\User\History;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\User\OrdersCart;
 use App\Http\Controllers\UserController;
@@ -34,6 +35,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/homepage', [UserController::class, 'index'])->name('home');
     Route::get('/homepage/account-settings', AccountSettings::class)->name('account');
     Route::get('/homepage/orders', OrdersCart::class)->name('order');
+    Route::get('/homepage/orders/history', History::class)->name('history');
 });
 
 Route::group(['middleware' => ['auth', 'admin', 'verified']], function () {

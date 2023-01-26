@@ -21,6 +21,7 @@
                 <div class="dropdown">
                     <img src="{{ auth()->user()->avatar_url }}" alt="" class="dropbtn">
                     <div class="dropdown-content">
+                    <a href="{{ route('history') }}"><i class='bx bx-history'></i> Orders</a>
                     <a href="{{ route('account') }}"><i class='bx bxs-cog' ></i> Settings</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
