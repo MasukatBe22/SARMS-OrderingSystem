@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('quantity');
+            $table->double('quantity');
+            $table->string('total');
             $table->string('type');
             $table->string('status')->default('New');
 

@@ -86,7 +86,7 @@
                                                     </div>
                                                 @enderror
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group mr-5">
                                                 <label for="status">Status:</label>
                                                 <select wire:model.defer="state.status" class="form-control @error('status')is-invalid @enderror" name="status" id="status" required>
                                                     <option value="" disabled>Select Availability</option>
@@ -94,6 +94,38 @@
                                                     <option value="Unavailable">Unavailable</option>
                                                 </select>
                                                 @error('status')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group mr-5">
+                                                <label for="type">Type of Serving:</label>
+                                                <select wire:model.defer="state.type" class="form-control @error('type')is-invalid @enderror" name="type" id="type" required>
+                                                    <option value="" disabled> ---- </option>
+                                                    <option value="pcs">piece</option>
+                                                    <option value="serving">serving</option>
+                                                </select>
+                                                @error('type')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group mr-5">
+                                                <label for="category">Category:</label>
+                                                <select wire:model.defer="state.category" class="form-control @error('category')is-invalid @enderror" name="category" id="category" required>
+                                                    <option value="" disabled>Select Category</option>
+                                                    <option value="pork">Pork</option>
+                                                    <option value="chicken">Chicken</option>
+                                                    <option value="beef">Beef</option>
+                                                    <option value="seafood">Seafood</option>
+                                                    <option value="vegetables">Vegetables</option>
+                                                    <option value="specialty">Specialty</option>
+                                                    <option value="noodles">Noodles</option>
+                                                    <option value="desert">Native Desert</option>
+                                                </select>
+                                                @error('category')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>

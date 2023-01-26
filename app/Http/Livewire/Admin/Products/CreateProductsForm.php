@@ -14,6 +14,8 @@ class CreateProductsForm extends Component
     public $photo;
 
     public $state = [
+        'type' => 'pcs',
+        'category' => 'pork',
         'status' => 'Available',
     ];
 
@@ -22,6 +24,8 @@ class CreateProductsForm extends Component
         $validateData = Validator::make($this->state, [
             'title' => 'required',
             'price'=> 'required',
+            'type'=> 'required',
+            'category'=> 'required',
             'description' => 'nullable',
             'status' => 'required',
         ])->validate();

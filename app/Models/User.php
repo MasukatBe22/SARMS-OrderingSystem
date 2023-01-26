@@ -80,7 +80,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($this->avatar && Storage::disk('avatars')->exists($this->avatar)) {
             return url('storage/avatars/'.auth()->user()->avatar);
         } else {
-            return asset('noimage.png');
+            return asset('avatar.jpg');
         }
     }
 }

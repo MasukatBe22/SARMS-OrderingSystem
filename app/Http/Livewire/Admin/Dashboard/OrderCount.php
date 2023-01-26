@@ -21,7 +21,7 @@ class OrderCount extends Component
             ->when($status, function ($query, $status){
                 return $query->where('status', $status);
             })
-            ->whereDay('created_at', Carbon::today('America/Chicago'))
+            ->whereDay('created_at', Carbon::today())
             ->get()->count();
     }
 

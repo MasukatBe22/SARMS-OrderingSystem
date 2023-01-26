@@ -12,7 +12,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ auth()->user()->avatar_url }}" id="profileImage" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ auth()->user()->avatar_url }}" id="profileImage" class="img-circle elevation-2" style="width:37px; height: 37px; alt="User Image">
         </div>
         <div class="info">
           @if (auth()->user()->role === 'admin')
@@ -37,7 +37,7 @@
             </li>
 
             <li class="nav-item">
-              <a href="{{ route('admin.products') }}" class="nav-link {{ request()->is('admin/products') ? 'active' : '' }}">
+              <a href="{{ route('admin.products') }}" class="nav-link {{ request()->is('admin/products') || request()->is('admin/products/create') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-pepper-hot"></i>
                 <p>
                   Product

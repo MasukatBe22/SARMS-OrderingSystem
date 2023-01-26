@@ -24,7 +24,7 @@ class ChefDashboard extends ChefComponent
         ]);
 
         $order->update(['status' => 'Cooking']);
-        $this->dispatchBrowserEvent('updated', ['message' => "Chefs assigned successfully."]);
+        $this->dispatchBrowserEvent('updated', ['message' => "Order status update successfully."]);
         $this->emitSelf('refresh-me');
     }
 
@@ -35,7 +35,7 @@ class ChefDashboard extends ChefComponent
         ]);
 
         $order->update(['status' => 'Cooked']);
-        $this->dispatchBrowserEvent('updated', ['message' => "Chefs assigned successfully."]);
+        $this->dispatchBrowserEvent('updated', ['message' => "Order status update successfully."]);
         $this->emitSelf('refresh-me');
     }
 
@@ -69,13 +69,13 @@ class ChefDashboard extends ChefComponent
             ->whereIn('status', ['Assigned', 'Cooking', 'Cooked'])
             ->where('chef_id', $chefID)
             ->orderBy($this->sortColumnName, $this->sortDirection)
-            ->whereDay('created_at', Carbon::today('America/Chicago'))
+            ->whereDay('created_at', Carbon::today())
             ->paginate(10);
         $today = Order::when($this->status, function ($query, $status) {
             return $query->where('status', $status);
-        })->where('chef_id', Auth::user()->id)->whereDay('created_at', Carbon::today('America/Chicago'))->orderBy('created_at', 'desc')->paginate(5);
-        $PickupOrder = Order::where('status', 'Pick-up')->where('chef_id', $chefID)->count();
-        $CancelOrder = Order::where('status', 'Cancel')->where('chef_id', $chefID)->count();
+        })->where('chef_id', Auth::user()->id)->whereDay('created_at', Carbon::today())->orderBy('created_at', 'desc')->paginate(5);
+        $PickupOrder = Order::where('status', 'Pick-up')->where('chef_id', $chefID)->whereDay('created_at', Carbon::today())->count();
+        $CancelOrder = Order::where('status', 'Cancel')->where('chef_id', $chefID)->whereDay('created_at', Carbon::today())->count();
 
         return view('livewire.chef.dashboard.chef-dashboard', [
             'orders' => $orders,

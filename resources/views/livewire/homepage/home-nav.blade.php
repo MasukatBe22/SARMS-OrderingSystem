@@ -1,19 +1,20 @@
 <div>
     <header>
-        <div class="logo">
-            <img src="{{ asset('logo/Logo.png') }}" alt="">
-            <h3>{{ setting('site_name') }}</h3>
-        </div>
-        <nav>
+        <a href="#home" class="logo"><img src="{{ asset('logo/Logo.png') }}" alt=""><span>{{ setting('site_name') }}</span></a>
+
+        <ul class="navbar">
             <li><a href="#home">Home</a></li>
             <li><a href="#menu">Menu</a></li>
             <li><a href="#team">Team</a></li>
             <li><a href="#order">Order</a></li>
             <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="main">
             @if (Auth::user()->role === 'admin' || Auth::user()->role === 'chef')
                 <li><a href="{{ route('home') }}">Dashboard</a></li>
             @else
-                <li><a href="{{ route('order') }}" class='bx bxs-cart'></a></li>
+                <li><a href="{{ route('order') }}" class='bx bxs-cart' style="font-size: 30px"></a></li>
                 @if (!empty($Count))
                     <span wire:poll.keep-alive class="cart-number">{{ $Count }}</span>
                 @endif
@@ -28,6 +29,7 @@
                     </div>
                 </div>
             @endif
-        </nav>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
     </header>
 </div>

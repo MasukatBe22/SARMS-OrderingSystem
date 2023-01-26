@@ -12,6 +12,7 @@
 
         <!-- icon -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
         <!-- Main Style -->
         <link rel="stylesheet" type="text/css" href="{{ asset('home/css/style.css') }}">
@@ -19,22 +20,24 @@
     </head>
     <body>
         <header>
-            <div class="logo">
-                <img src="{{ asset('logo/Logo.png') }}" alt="">
-                <h3>{{ setting('site_name') }}</h3>
-            </div>
-            <nav>
+            <a href="#home" class="logo"><img src="{{ asset('logo/Logo.png') }}" alt=""><span>{{ setting('site_name') }}</span></a>
+
+            <ul class="navbar">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#menu">Menu</a></li>
                 <li><a href="#team">Team</a></li>
                 <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="main">
                 @auth
                     <li><a href="{{ route('home') }}">Dashboard</a></li>
                 @else
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
+                    <a href="{{ route('login') }}" class="user"><i class="ri-user-fill"></i>Sign In</a>
+                    <a href="{{ route('register') }}">Register</a>
                 @endauth
-            </nav>
+                <div class="bx bx-menu" id="menu-icon"></div>
+            </div>
         </header>
 
         <livewire:homepage.home-section />

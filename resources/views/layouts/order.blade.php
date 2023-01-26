@@ -50,7 +50,9 @@
                     title: event.detail.title,
                     text: event.detail.text,
                     icon: event.detail.type,
+                    timer: 3000,
                 });
+                $('#OrderDetail').modal('show'); 
             })
             window.addEventListener('show-form', event => {
                 $('#modalORderform').modal('show'); 
