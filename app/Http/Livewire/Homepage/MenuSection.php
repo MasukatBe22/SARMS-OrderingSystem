@@ -16,6 +16,11 @@ class MenuSection extends Component
         if(Cart::where('customer_id', $customer)->where('product_id', $productId)->exists()) {
             $cart = Cart::where('product_id', $productId);
             $cart->delete();
+            $this->dispatchBrowserEvent('swal:modal', [
+                'type' => 'success',
+                'title' => 'Successfully Remove!',
+                'text' => ''
+            ]);
         }
         else {
             Validator::make(['customer_id' => $customer, 'product_id' => $productId], [
@@ -23,6 +28,11 @@ class MenuSection extends Component
                 'product_id' => 'required',
             ]);
             Cart::create(['customer_id' => $customer, 'product_id' => $productId]);
+            $this->dispatchBrowserEvent('swal:modal', [
+                'type' => 'success',
+                'title' => 'Successfully Added!',
+                'text' => ''
+            ]);
         }
     }
 

@@ -27,6 +27,17 @@
         <livewire:homepage.contact-section />
 
         <script type="text/javascript" src="{{ asset('home/js/script.js') }}"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            window.addEventListener('swal:modal', event => {
+                swal({
+                    title: event.detail.title,
+                    text: event.detail.text,
+                    icon: event.detail.type,
+                    timer: 3000,
+                });
+            });
+        </script>
         @livewireScripts
     </body>
 </html>
