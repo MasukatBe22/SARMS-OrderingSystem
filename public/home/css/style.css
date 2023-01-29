@@ -9,20 +9,9 @@
 	scroll-behavior: smooth;
 }
 
-:root{
-	--bg-color: #ffffff;
-	--second-color: #f54300;
-	--main-color: #7dd87d;
-	--text-color: #0d031e;
-	--other-color: #999fb9;
-	--big-font: 4.8rem;
-	--h2-font: 3.2rem;
-	--p-font: 1.7rem;
-}
-
 body{
-	color: var(--text-color);
-	background: var(--bg-color);
+	color: #0d031e;
+	background: #ffffff;
 }
 
 header{
@@ -34,7 +23,7 @@ header{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background-color: var(--bg-color);
+	background-color: #ffffff;
 	padding: 28px 12%;
 	transition: all .50ss ease;
 }
@@ -47,10 +36,10 @@ header{
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
-	border: 1px solid var(--other-color)
+	border: 1px solid #999fb9;
 }
 .logo span{
-	color: var(--text-color);
+	color: #0d031e;
 	font-size: 1.7rem;
 	font-weight: 600;
 }
@@ -58,7 +47,7 @@ header{
 	display: flex;
 }
 .navbar a{
-	color: var(--text-color);
+	color: #0d031e;
 	font-size: 1.4rem;
 	font-weight: 500;
 	padding: 5px 0;
@@ -67,7 +56,7 @@ header{
 }
 .navbar a:hover,
 .navbar a:active{
-	color: var(--main-color);
+	color: #7dd87d;
 }
 .main{
 	display: flex;
@@ -76,7 +65,7 @@ header{
 .main a{
 	margin-right: 25px;
 	margin-left: 10px;
-	color: var(--text-color);
+	color: #0d031e;
 	font-size: 1.4rem;
 	font-weight: 500;
 	transition: all .50s ease;
@@ -86,12 +75,12 @@ header{
 	align-items: center;
 }
 .user i{
-	color: var(--main-color);
+	color: #7dd87d;
 	font-size: 28px;
 	margin-right: 7px;
 }
 .main a:hover{
-	color: var(--main-color);
+	color: #7dd87d;
 }
 
 .cart-number{
@@ -104,10 +93,10 @@ header{
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background: var(--bg-color);
+    background: #ffffff;
     font-size: 15px;
-    border: 1px solid var(--other-color);
-    color: var(--main-color);
+    border: 1px solid #999fb9;
+    color: #7dd87d;
 }
 
 .dropdown img {
@@ -115,7 +104,7 @@ header{
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
-	border: 2px solid var(--text-color)
+	border: 2px solid #0d031e;
 }
 
 /* Style The Dropdown Button */
@@ -143,7 +132,7 @@ header{
   
   /* Links inside the dropdown */
   .dropdown-content a {
-	color: var(--text-color);
+	color: #0d031e;
 	padding: 12px 16px;
 	text-decoration: none;
 	display: block;
@@ -151,8 +140,8 @@ header{
   
   /* Change color of dropdown links on hover */
   .dropdown-content a:hover {
-	background-color: var(--bg-color);
-	color: var(--main-color);
+	background-color: #ffffff;
+	color: #7dd87d;
 }
   
   /* Show the dropdown menu on hover */
@@ -162,11 +151,11 @@ header{
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {
-	border: 2px solid var(--main-color);
+	border: 2px solid #7dd87d;
   }
 #menu-icon{
 	font-size: 35px;
-	color: var(--text-color);
+	color: #0d031e;
 	cursor: pointer;
 	z-index: 10001;
 	display: none;
@@ -193,19 +182,19 @@ section{
 
 .home .main-container .content-bx h3 {
     font-size: 3rem;
-    color: var(--second-color);
+    color: #f54300;
     padding-bottom: 5px;
     transition: all .3s ease-in-out;
 }
 
 .home .main-container .content-bx h1 {
-    color: var(--text-color);
+    color: #0d031e;
 }
 
 .home .main-container .content-bx p {
     width: 370px;
     font-size: 20px;
-    color: var(--other-color);
+    color: #999fb9;
     padding-top: 5px;
     word-break: break-all;
     transition: all .3s ease-in-out;
@@ -216,18 +205,18 @@ section{
     padding: 8px 10px;
     border-radius: 30px;
     margin-top: 10px;
-    border: 2px solid var(--main-color);
-    background: var(--main-color);
-    color: var(--bg-color);
+    border: 2px solid #7dd87d;
+    background: #7dd87d;
+    color: #ffffff;
 	font-weight: bold;
-    box-shadow: 3px 5px 8px var(--other-color);
+    box-shadow: 3px 5px 8px #999fb9;
     transition: all .3s ease-in-out;
     cursor: pointer;
     margin-bottom: 60px;
 }
 
 .home .main-container .content-bx button:hover {
-    color: var(--main-color);
+    color: #7dd87d;
     background: transparent;
     font-weight: bold;
 }
@@ -255,7 +244,7 @@ section{
     min-width: 130px;
     min-height: 130px;
     margin-right: 13px;
-    background: var(--other-color);
+    background: #999fb9;
     border-radius: 50px 10px 10px 10px;
 }
 
@@ -270,21 +259,21 @@ section{
     top: -7px;
     left: -7px;
     border-radius: 50%;
-    border: 3px solid var(--main-color);
+    border: 3px solid #7dd87d;
 }
 
 .home .main-container .content-bx .menu-card .card h4 {
     position: absolute;
     top: 20px;
     right: 20px;
-    color: var(--bg-color);
+    color: #ffffff;
     font-size: 13px;
     font-weight: 600;
 }
 
 .home .main-container .content-bx .menu-card .card h5 {
     position: absolute;
-    color: var(--bg-color);
+    color: #ffffff;
     font-size: 15px;
     font-weight: 500;
     padding: 0px 10px;
@@ -296,7 +285,7 @@ section{
 }
 
 .home .main-container .content-bx .menu-card .card p {
-    color: var(--bg-color);
+    color: #ffffff;
     width: fit-content;
     font-size: 7px;
     font-weight: 500;
@@ -318,12 +307,12 @@ section{
 }
 
 .home .main-container .content-bx .btn-scroll i {
-	color: var(--main-color);
+	color: #7dd87d;
     margin-right: 30px;
 }
 
 .home .main-container .content-bx .btn-scroll i:hover {
-    color: var(--second-color);
+    color: #f54300;
     cursor: pointer;
     transition: .3s linear;
 }
@@ -333,7 +322,7 @@ section{
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    border: 7px solid var(--main-color);
+    border: 7px solid #7dd87d;
     top: 20%;
     right: 20%;
     transition: all .3s ease-in-out;
@@ -343,11 +332,11 @@ section{
 }
 .center-text h2{
 	margin: 15px 0px 0px;
-	font-size: var(--h2-font);
+	font-size: 3.2rem;
 	line-height: 1.1;
 }
 .center-text h3{
-	color: var(--second-color);
+	color: #f54300;
 	font-size: 35px;
 	font-weight: 600;
 }
@@ -364,7 +353,7 @@ section{
 }
 .box{
 	padding: 15px 50px 15px 50px;
-	background: var(--bg-color);
+	background: #ffffff;
 	box-shadow: 0px 5px 40px rgb(19 8 73 / 13%);
 	border-radius: 20px;
 	transition: all .40s ease;
@@ -382,19 +371,19 @@ section{
 	border-radius: 30px;
 }
 .box-text h4{
-	color: var(--text-color);
+	color: #0d031e;
 	font-size: 28px;
 	font-weight: 700;
 	margin-bottom: 10px;
 }
 .box-text p{
 	font-size: 1rem;
-	color: var(--other-color);
+	color: #999fb9;
 	font-weight: 400;
 	margin-bottom: 15px;
 }
 .box-text h6{
-	color: var(--second-color);
+	color: #f54300;
 	font-size: 20px;
 	font-weight: 600;
 }
@@ -414,18 +403,18 @@ section{
 	text-align: center;
 	justify-content: center;
 	font-size: 14px;
-    border: 2px solid var(--main-color);
-    background: var(--main-color);
-    color: var(--bg-color);
+    border: 2px solid #7dd87d;
+    background: #7dd87d;
+    color: #ffffff;
 	font-weight: bold;
-    box-shadow: 3px 5px 8px var(--other-color);
+    box-shadow: 3px 5px 8px #999fb9;
     transition: all .3s ease-in-out;
     cursor: pointer;
 	text-decoration: none;
     margin-bottom: 10px;
 }
 .box-text .order-contents-btn a:hover {
-	color: var(--main-color);
+	color: #7dd87d;
     background: transparent;
     font-weight: bold;
 }
@@ -444,9 +433,9 @@ section{
 	text-decoration: none;
     border: 2px solid red;
     background: red;
-    color: var(--bg-color);
+    color: #ffffff;
 	font-weight: bold;
-    box-shadow: 3px 5px 8px var(--other-color);
+    box-shadow: 3px 5px 8px #999fb9;
     transition: all .3s ease-in-out;
     cursor: pointer;
     margin-bottom: 10px;
@@ -471,9 +460,9 @@ section{
 	font-size: 14px;
     border: 2px solid red;
     background: red;
-    color: var(--bg-color);
+    color: #ffffff;
 	font-weight: bold;
-    box-shadow: 3px 5px 8px var(--other-color);
+    box-shadow: 3px 5px 8px #999fb9;
     transition: all .3s ease-in-out;
     cursor: pointer;
     margin-bottom: 10px;
@@ -484,24 +473,24 @@ section{
     font-weight: bold;
 }
 .box-text li {
-    background: var(--bg-color);
+    background: #ffffff;
     border-radius: 50%;
     height: 4rem;
     width: 4rem;
 	transition: 1s linear;
 }
 .box-text li:hover{
-	background: var(--main-color);
+	background: #7dd87d;
 }
 .box-text li a {
 	line-height: 4rem;
 	font-size: 2rem;
-	color:var(--main-color);
+	color:#7dd87d;
 	display: flex;
 	justify-content: center;
 }
 .box-text li a:hover {
-	color:var(--bg-color);
+	color:#ffffff;
 }
 .box:hover{
 	transform: scale(1.04) translateY(-5px);
@@ -518,7 +507,7 @@ section{
 }
 .row{
 	padding: 28px 30px;
-	background: var(--bg-color);
+	background: #ffffff;
 	box-shadow: 0px 5px 40px rgb(19 8 73 / 13%);
 	border-radius: 20px;
 	transition: all .40s ease;
@@ -528,18 +517,18 @@ section{
 	width: 120px;
 	object-fit: cover;
 	border-radius: 50%;
-	border: 7px solid var(--main-color);
+	border: 7px solid #7dd87d;
 	margin-bottom: 25px;
 }
 .row h4{
 	font-size: 22px;
 	font-weight: 700;
-	color: var(--text-color);
+	color: #0d031e;
 	margin-bottom: 7px;
 }
 .row p{
-	font-size: var(--p-font);
-	color: var(--other-color);
+	font-size: 1.7rem;
+	color: #999fb9;
 	font-weight: 400;
 	margin-bottom: 25px;
 	letter-spacing: 1px;
@@ -548,9 +537,9 @@ section{
 	display: inline-block;
 	width: 37px;
 	height: 37px;
-	background: var(--bg-color);
-	color: var(--text-color);
-	border: 2px solid var(--main-color);
+	background: #ffffff;
+	color: #0d031e;
+	border: 2px solid #7dd87d;
 	border-radius: 50%;
 	display: inline-flex;
 	align-items: center;
@@ -561,7 +550,7 @@ section{
 }
 .team-icon i:hover{
 	transform: scale(1.2);
-	background: var(--main-color);
+	background: #7dd87d;
 	color: #fff;
 }
 .row:hover{
@@ -586,7 +575,7 @@ section{
 }
 .box-order{
 	padding: 15px 50px 15px 50px;
-	background: var(--bg-color);
+	background: #ffffff;
 	box-shadow: 0px 5px 40px rgb(19 8 73 / 13%);
 	border-radius: 20px;
 	height: auto;
@@ -614,33 +603,33 @@ section{
 }
 .order-text p{
 	font-size: 1rem;
-	color: var(--other-color);
+	color: #999fb9;
 	font-weight: 400;
 }
 .order-text h6{
-	color: var(--second-color);
+	color: #f54300;
 	font-size: 20px;
 	font-weight: 600;
 }
 .order-text li {
-    background: var(--bg-color);
+    background: #ffffff;
     border-radius: 50%;
     height: 4rem;
     width: 4rem;
 	transition: 1s linear;
 }
 .order-text li:hover{
-	background: var(--main-color);
+	background: #7dd87d;
 }
 .order-text li a {
 	line-height: 4rem;
 	font-size: 2rem;
-	color:var(--main-color);
+	color:#7dd87d;
 	display: flex;
 	justify-content: center;
 }
 .order-text li a:hover {
-	color:var(--bg-color);
+	color:#ffffff;
 }
 .box-order:hover{
 	transform: scale(1.04) translateY(-5px);
@@ -657,21 +646,21 @@ section{
 .contact-box h5{
 	font-size: 16px;
 	font-weight: 600;
-	color: var(--other-color);
+	color: #999fb9;
 }
 .contact-box li{
 	margin-bottom: 14px;
 }
 .contact-box li a{
 	display: block;
-	color: var(--other-color);
-	font-size: var(--p-font);
+	color: #999fb9;
+	font-size: 1.7rem;
 	font-weight: 600;
 	transition: all .35s ease;
 }
 .contact-box li a:hover{
 	transform: translateX(10px);
-	color: var(--main-color);
+	color: #7dd87d;
 }
 .address{
 	display: flex;
@@ -680,18 +669,18 @@ section{
 .address i{
 	margin-bottom: 0.8rem;
 	font-size: 1.1rem;
-	color: var(--main-color);
+	color: #7dd87d;
 }
 .address span{
 	margin-left: 1rem;
-	color: var(--other-color);
+	color: #999fb9;
 }
 
 .end-text{
 	text-align: center;
 }
 .end-text p{
-	color: var(--other-color);
+	color: #999fb9;
 	font-size: 15px;
 	letter-spacing: 2px;
 	padding: 20px;
@@ -742,7 +731,7 @@ section{
 		right: -100%;
 		width: 270px;
 		height: 29vh;
-		background: var(--bg-color);
+		background: #ffffff;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
@@ -758,7 +747,7 @@ section{
 	.navbar a:hover,
 	.navbar a:active{
 		transform: translateY(5px);
-		color: var(--main-color);
+		color: #7dd87d;
 	}
 	.navbar.open{
 		right: 2%;
@@ -791,21 +780,11 @@ section{
 }
 
 @media (max-width: 1090px){
-	:root{
-		--big-font: 3.7rem;
-		--h2-font: 2.6rem;
-		--p-font: 1rem;
-		transition: .3s;
-	}
 }
 
 @media (max-width: 880px){
 	section{
 		padding: 80px 3%;
-	}
-	:root{
-		--big-font: 3.2rem;
-		--h2-font: 2.2rem;
 	}
 	.home .main-container .content-bx .menu-card {
 		width: 135%;
@@ -938,12 +917,6 @@ section{
 		padding: 65px 1%;
 		transition: .3s;
 	}
-	:root{
-		--big-font: 2.7rem;
-		--h2-font: 2.3rem;
-		--p-font: 0.8rem;
-		transition: .3s;
-	}
 	.home .main-container .dish-bx img {
 		width: 180px;
 		height: 180px;
@@ -978,12 +951,6 @@ section{
 @media (max-width: 414px){
 	section{
 		padding: 65px 1%;
-		transition: .3s;
-	}
-	:root{
-		--big-font: 2.7rem;
-		--h2-font: 2.3rem;
-		--p-font: 0.8rem;
 		transition: .3s;
 	}
 	.home .main-container .dish-bx img {
@@ -1021,12 +988,6 @@ section{
 @media (max-width: 375px){
 	section{
 		padding: 65px 1%;
-		transition: .3s;
-	}
-	:root{
-		--big-font: 2.7rem;
-		--h2-font: 2.3rem;
-		--p-font: 0.8rem;
 		transition: .3s;
 	}
 	.home .main-container .dish-bx img {

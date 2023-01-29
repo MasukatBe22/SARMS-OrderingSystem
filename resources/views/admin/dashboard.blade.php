@@ -27,13 +27,14 @@
 
                 <!-- small box -->
                 <livewire:admin.dashboard.product-count />
-
+                
                 <!-- small box -->
                 <livewire:admin.dashboard.customer-count />
 
                 <!-- small box -->
                 <livewire:admin.dashboard.chef-count />
               </div>
+              <livewire:admin.dashboard.totalsales />
               <livewire:admin.dashboard.order-status />
             </div>
           </div>

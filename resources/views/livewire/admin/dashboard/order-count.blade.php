@@ -17,6 +17,5 @@
 
         <p>Today Orders</p>
       </div>
-      <a href="{{ route('admin.orders') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
 </div>

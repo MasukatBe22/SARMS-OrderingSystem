@@ -140,7 +140,7 @@
 				<div class="modal-body">
 					<div class="ml-5">
 						<h4>Order: {{ $name }}</h4>
-						<strong>Total Price: {{ $total }}</strong><br>
+						<strong>Total Price: ${{ $total }}</strong><br>
 						<strong>Quantity: {{ $quantity }} {{ $type }}</strong>
 					</div>
 				</div>

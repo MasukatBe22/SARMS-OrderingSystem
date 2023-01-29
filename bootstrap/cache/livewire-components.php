@@ -5,6 +5,7 @@
   'admin.dashboard.order-count' => 'App\\Http\\Livewire\\Admin\\Dashboard\\OrderCount',
   'admin.dashboard.order-status' => 'App\\Http\\Livewire\\Admin\\Dashboard\\OrderStatus',
   'admin.dashboard.product-count' => 'App\\Http\\Livewire\\Admin\\Dashboard\\ProductCount',
+  'admin.dashboard.totalsales' => 'App\\Http\\Livewire\\Admin\\Dashboard\\Totalsales',
   'admin.orders.list-orders' => 'App\\Http\\Livewire\\Admin\\Orders\\ListOrders',
   'admin.products.create-products-form' => 'App\\Http\\Livewire\\Admin\\Products\\CreateProductsForm',
   'admin.products.list-products' => 'App\\Http\\Livewire\\Admin\\Products\\ListProducts',

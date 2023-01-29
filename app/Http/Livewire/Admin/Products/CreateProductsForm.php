@@ -37,6 +37,8 @@ class CreateProductsForm extends Component
         
         $this->dispatchBrowserEvent('hide-form', ['message' => 'Product created successfully']);
         $this->state = [
+            'type' => 'pcs',
+            'category' => 'pork',
             'status' => 'Available',
         ];
         $this->photo = null;
