@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Validator;
 
 class MenuSection extends Component
 {
+    public $category = 'specialty';
+
     public function addtoCart(int $productId)
     {
         $customer = Customer::where('customer_id', auth()->user()->id)->value('id');
@@ -36,9 +38,16 @@ class MenuSection extends Component
         }
     }
 
+    public function filterMenu($category = null)
+    {
+        $this->category = $category;
+    }
+
     public function render()
     {
-        $products = Product::where('status', 'available')->orderBy('id', 'desc')->get();
+        $products = Product::when($this->category, function ($query, $category) {
+            return $query->where('category', $category);
+        })->where('status', 'available')->orderBy('id', 'desc')->get();
         return view('livewire.homepage.menu-section', ['products' => $products]);
     }
 }

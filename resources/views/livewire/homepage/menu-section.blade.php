@@ -5,6 +5,26 @@
 			<h2>Delicious food</h2>
 		</div>
 
+		<div class="center-text">
+			<div style="display: flex; justify-content: space-between; padding: 2% 20%">
+				<button wire:click="filterMenu('specialty')" style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;"><span>Specialty</span></button>
+				<span>|</span>
+				<button wire:click="filterMenu('pork')" style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;"><span>Pork</span></button>
+				<span>|</span>
+				<button wire:click="filterMenu('beef')" style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;"><span>Beef</span></button>
+				<span>|</span>
+				<button wire:click="filterMenu('chicken')" style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;"><span>Chicken</span></button>
+				<span>|</span>
+				<button wire:click="filterMenu('seafood')" style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;"><span>Seafood</span></button>
+				<span>|</span>
+				<button wire:click="filterMenu('vegetables')" style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;"><span>Vegetables</span></button>
+				<span>|</span>
+				<button wire:click="filterMenu('noodles')" style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;"><span>Noodles</span></button>
+				<span>|</span>
+				<button wire:click="filterMenu('desert')" style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;"><span>Desert</span></button>
+			</div>
+		</div>
+
 		<div wire:poll.keep-alive class="menu-content">
             @forelse ($products as $prod)
             <div class="box">
