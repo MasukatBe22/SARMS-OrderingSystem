@@ -30,6 +30,7 @@
         background-color: blue;
         cursor: pointer;
     }
+    [x-cloak] { display: none !important; }
   </style>
   @livewireStyles
   @stack('styles')

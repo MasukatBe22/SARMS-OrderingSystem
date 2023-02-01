@@ -1,5 +1,124 @@
-<div class="col-lg-12" wire:poll.keep-alive>
-    <div class="card" id="today">
+<div class="col-lg-12 mt-2" wire:poll.keep-alive x-data="{ total: false, today: true, yesterday: false, month: false, year: false }">
+    <div class="d-flex justify-content-end mb-1">
+        <div class="btn-group">
+            <button x-on:click="total = true, today = false, yesterday = false, month = false, year = false" type="button" class="btn btn-default">
+                <span class="mr-1">Total</span>
+            </button>
+            <button x-on:click="total = false, today = true, yesterday = false, month = false, year = false" type="button" class="btn btn-default">
+                <span class="mr-1">Today</span>
+            </button>
+            <button x-on:click="total = false, today = false, yesterday = true, month = false, year = false" type="button" class="btn btn-default">
+                <span class="mr-1">Yesterday</span>
+            </button>
+            <button x-on:click="total = false, today = false, yesterday = false, month = true, year = false" type="button" class="btn btn-default ">
+                <span class="mr-1">Month</span>
+            </button>
+            <button x-on:click="total = false, today = false, yesterday = false, month = false, year = true" type="button" class="btn btn-default">
+                <span class="mr-1">Year</span>
+            </button>
+        </div>
+    </div>
+    <div class="card" x-cloak x-show="total">
+        <div class="card-body">
+            <div class="d-flex justify-content-between mb-2">
+                <h4 style="font-weight: bold;">Total Orders</h4>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Order Id
+                            <span wire:click="sortBy('id')" class="float-right" style="cursor: pointer">
+                                <i class="fa fa-arrow-up {{ $sortColumnName === 'id' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
+                                <i class="fa fa-arrow-down {{ $sortColumnName === 'id' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
+                            </span>
+                        </th>
+                        <th scope="col">Customer
+                            <span wire:click="sortBy('customer_id')" class="float-right" style="cursor: pointer">
+                                <i class="fa fa-arrow-up {{ $sortColumnName === 'customer_id' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
+                                <i class="fa fa-arrow-down {{ $sortColumnName === 'customer_id' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
+                            </span>
+                        </th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Contact Number</th>
+                        <th scope="col">Product
+                            <span wire:click="sortBy('product_id')" class="float-right" style="cursor: pointer">
+                                <i class="fa fa-arrow-up {{ $sortColumnName === 'product_id' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
+                                <i class="fa fa-arrow-down {{ $sortColumnName === 'product_id' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
+                            </span>
+                        </th>
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Quantity
+                            <span wire:click="sortBy('quantity')" class="float-right" style="cursor: pointer">
+                                <i class="fa fa-arrow-up {{ $sortColumnName === 'quantity' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
+                                <i class="fa fa-arrow-down {{ $sortColumnName === 'quantity' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
+                            </span>
+                        </th>
+                        <th scope="col">Order Date
+                            <span wire:click="sortBy('created_at')" class="float-right" style="cursor: pointer">
+                                <i class="fa fa-arrow-up {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
+                                <i class="fa fa-arrow-down {{ $sortColumnName === 'created_at' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
+                            </span>
+                        </th>
+                        <th scope="col">Status
+                            <span wire:click="sortBy('status')" class="float-right" style="cursor: pointer">
+                                <i class="fa fa-arrow-up {{ $sortColumnName === 'status' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
+                                <i class="fa fa-arrow-down {{ $sortColumnName === 'status' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
+                            </span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($totals as $index => $total)
+                        <tr>
+                            <th scope="col">{{ $totals->firstItem() + $index }}</th>
+                            <th scope="col">{{ $total->id }}</th>
+                            <th scope="col">{{ $total->customer->fname }} {{ $total->customer->lname }}</th>
+                            <th scope="col">{{ $total->customer->address }}</th>
+                            <th scope="col">{{ $total->customer->mobile }}</th>
+                            <th scope="col">
+                                @if ($total->product->photo)
+                                    <img src="{{ url('storage/photo/'.$total->product->photo) }}" style="width: 50px; height: 35px;" alt="photos" class="mr-2">
+                                @else
+                                    <img src="" style="width: 50px; height: 35px;" alt="photos" class="mr-2">
+                                @endif
+                                {{ $total->product->title }}
+                            </th>
+                            <th scope="col">{{ $total->total }}</th>
+                            <th scope="col">{{ $total->quantity }} {{ $total->type }}</th>
+                            <th scope="col">{{ $total->created_at }}</th>
+                            <th scope="col">
+                                @if ( ($total->status) == 'New' )
+                                    <span class="badge badge-dark" style="font-size:100%;">{{ $total->status }}</span>
+                                @elseif ( ($total->status) == 'Assigned' )
+                                    <span class="badge badge-info" style="font-size:100%;">{{ $total->status }}</span>
+                                @elseif ( ($total->status) == 'Cooking' )
+                                    <span class="badge badge-warning" style="font-size:100%;">{{ $total->status }}</span>
+                                @elseif ( ($total->status) == 'Cooked' )
+                                    <span class="badge badge-success" style="font-size:100%;">{{ $total->status }}</span>
+                                @elseif ( ($total->status) == 'Pick-up' )
+                                    <span class="badge badge-primary" style="font-size:100%;">{{ $total->status }}</span>
+                                @elseif ( ($total->status) == 'Cancel' )
+                                    <span class="badge badge-danger" style="font-size:100%;">{{ $total->status }}</span>
+                                @endif
+                            </th>
+                        </tr>
+                    @empty
+                        <tr class="text-center">
+                            <td colspan="11">
+                            <img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/v2/assets/empty.svg" alt="No results found">
+                            <p class="mt-2">No results found</p> 
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer d-flex justify-content-end">
+            {{ $totals->links() }}
+        </div>
+    </div>
+    <div class="card" x-cloak x-show="today">
         <div class="card-body">
             <div class="d-flex justify-content-between mb-2">
                 <h4 style="font-weight: bold;">Today Orders</h4>
@@ -125,107 +244,7 @@
             {{ $orders->links() }}
         </div>
     </div>
-    <div class="card" id="total">
-        <div class="card-body">
-            <div class="d-flex justify-content-between mb-2">
-                <h4 style="font-weight: bold;">Total Orders</h4>
-            </div>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Order Id
-                            <span wire:click="sortBy('id')" class="float-right" style="cursor: pointer">
-                                <i class="fa fa-arrow-up {{ $sortColumnName === 'id' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
-                                <i class="fa fa-arrow-down {{ $sortColumnName === 'id' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
-                            </span>
-                        </th>
-                        <th scope="col">Customer
-                            <span wire:click="sortBy('customer_id')" class="float-right" style="cursor: pointer">
-                                <i class="fa fa-arrow-up {{ $sortColumnName === 'customer_id' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
-                                <i class="fa fa-arrow-down {{ $sortColumnName === 'customer_id' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
-                            </span>
-                        </th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Contact Number</th>
-                        <th scope="col">Product
-                            <span wire:click="sortBy('product_id')" class="float-right" style="cursor: pointer">
-                                <i class="fa fa-arrow-up {{ $sortColumnName === 'product_id' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
-                                <i class="fa fa-arrow-down {{ $sortColumnName === 'product_id' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
-                            </span>
-                        </th>
-                        <th scope="col">Total Price</th>
-                        <th scope="col">Quantity
-                            <span wire:click="sortBy('quantity')" class="float-right" style="cursor: pointer">
-                                <i class="fa fa-arrow-up {{ $sortColumnName === 'quantity' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
-                                <i class="fa fa-arrow-down {{ $sortColumnName === 'quantity' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
-                            </span>
-                        </th>
-                        <th scope="col">Order Date
-                            <span wire:click="sortBy('created_at')" class="float-right" style="cursor: pointer">
-                                <i class="fa fa-arrow-up {{ $sortColumnName === 'created_at' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
-                                <i class="fa fa-arrow-down {{ $sortColumnName === 'created_at' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
-                            </span>
-                        </th>
-                        <th scope="col">Status
-                            <span wire:click="sortBy('status')" class="float-right" style="cursor: pointer">
-                                <i class="fa fa-arrow-up {{ $sortColumnName === 'status' && $sortDirection === 'asc' ? '' : 'text-muted' }}"></i>
-                                <i class="fa fa-arrow-down {{ $sortColumnName === 'status' && $sortDirection === 'desc' ? '' : 'text-muted' }}"></i>
-                            </span>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($totals as $index => $total)
-                        <tr>
-                            <th scope="col">{{ $totals->firstItem() + $index }}</th>
-                            <th scope="col">{{ $total->id }}</th>
-                            <th scope="col">{{ $total->customer->fname }} {{ $total->customer->lname }}</th>
-                            <th scope="col">{{ $total->customer->address }}</th>
-                            <th scope="col">{{ $total->customer->mobile }}</th>
-                            <th scope="col">
-                                @if ($total->product->photo)
-                                    <img src="{{ url('storage/photo/'.$total->product->photo) }}" style="width: 50px; height: 35px;" alt="photos" class="mr-2">
-                                @else
-                                    <img src="" style="width: 50px; height: 35px;" alt="photos" class="mr-2">
-                                @endif
-                                {{ $total->product->title }}
-                            </th>
-                            <th scope="col">{{ $total->total }}</th>
-                            <th scope="col">{{ $total->quantity }} {{ $total->type }}</th>
-                            <th scope="col">{{ $total->created_at }}</th>
-                            <th scope="col">
-                                @if ( ($total->status) == 'New' )
-                                    <span class="badge badge-dark" style="font-size:100%;">{{ $total->status }}</span>
-                                @elseif ( ($total->status) == 'Assigned' )
-                                    <span class="badge badge-info" style="font-size:100%;">{{ $total->status }}</span>
-                                @elseif ( ($total->status) == 'Cooking' )
-                                    <span class="badge badge-warning" style="font-size:100%;">{{ $total->status }}</span>
-                                @elseif ( ($total->status) == 'Cooked' )
-                                    <span class="badge badge-success" style="font-size:100%;">{{ $total->status }}</span>
-                                @elseif ( ($total->status) == 'Pick-up' )
-                                    <span class="badge badge-primary" style="font-size:100%;">{{ $total->status }}</span>
-                                @elseif ( ($total->status) == 'Cancel' )
-                                    <span class="badge badge-danger" style="font-size:100%;">{{ $total->status }}</span>
-                                @endif
-                            </th>
-                        </tr>
-                    @empty
-                        <tr class="text-center">
-                            <td colspan="11">
-                            <img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/v2/assets/empty.svg" alt="No results found">
-                            <p class="mt-2">No results found</p> 
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-        <div class="card-footer d-flex justify-content-end">
-            {{ $totals->links() }}
-        </div>
-    </div>
-    <div class="card" id="yesterday">
+    <div class="card" x-cloak x-show="yesterday">
         <div class="card-body">
             <div class="d-flex justify-content-between mb-2">
                 <h4 style="font-weight: bold;">Yesterday Orders</h4>
@@ -325,7 +344,7 @@
             {{ $yesterdays->links() }}
         </div>
     </div>
-    <div class="card" id="month">
+    <div class="card" x-cloak x-show="month">
         <div class="card-body">
             <div class="d-flex justify-content-between mb-2">
                 <h4 style="font-weight: bold;">This Month Orders</h4>
@@ -425,7 +444,7 @@
             {{ $months->links() }}
         </div>
     </div>
-    <div class="card" id="year">
+    <div class="card" x-cloak x-show="year">
         <div class="card-body">
             <div class="d-flex justify-content-between mb-2">
                 <h4 style="font-weight: bold;">This Year Orders</h4>
