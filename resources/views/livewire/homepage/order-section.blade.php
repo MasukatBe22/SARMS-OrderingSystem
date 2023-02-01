@@ -18,7 +18,7 @@
                                 <h6>#{{ $orders->firstItem() + $index }}<h6>
                                 <h4>{{ $order->chef->fname }} {{ $order->chef->lname }}</h4>
                                 <p>Orders Id: {{ $order->id }}</p>
-                                <p>Order Created: {{ $order->created_at }}</p>
+                                <p>Status Update: {{ $order->updated_at }}</p>
                                 <p>Quantity: {{ $order->quantity }} {{ $order->type }}</p>
                                 <p>Total Price: {{ $order->total }}</p>
                                 <h6>Orders Status: {{ $order->status }}</h6>
