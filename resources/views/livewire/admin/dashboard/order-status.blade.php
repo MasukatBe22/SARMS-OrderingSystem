@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-end mb-1">
         <div class="btn-group">
             <button x-on:click="total = true, today = false, yesterday = false, month = false, year = false" type="button" class="btn btn-default">
-                <span class="mr-1">Total</span>
+                <span class="mr-1">All</span>
             </button>
             <button x-on:click="total = false, today = true, yesterday = false, month = false, year = false" type="button" class="btn btn-default">
                 <span class="mr-1">Today</span>
