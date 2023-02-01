@@ -23,7 +23,10 @@ class ChefDashboard extends ChefComponent
             'status' => 'required',
         ]);
 
+        
         $order->update(['status' => 'Cooking']);
+        $begin = $order->updated_at->format('H:i:s');
+        $order->update(['begin' => $begin]);
         $this->dispatchBrowserEvent('updated', ['message' => "Order status update successfully."]);
         $this->emitSelf('refresh-me');
     }
@@ -35,6 +38,15 @@ class ChefDashboard extends ChefComponent
         ]);
 
         $order->update(['status' => 'Cooked']);
+        $end = $order->updated_at->format('H:i:s');
+        $order->update(['end' => $end]);
+
+        $start = $order->begin;
+        $finish = $order->end;
+        $t1 = strtotime($start);
+        $t2 = strtotime($finish);
+        $diff = gmdate('H:i', $t2 - $t1);
+        $order->update(['timeframe' => $diff]);
         $this->dispatchBrowserEvent('updated', ['message' => "Order status update successfully."]);
         $this->emitSelf('refresh-me');
     }

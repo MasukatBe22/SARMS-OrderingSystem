@@ -20,6 +20,9 @@ class Order extends Model
         'chef_id',
         'customer_id',
         'product_id',
+        'begin',
+        'end',
+        'timeframe',
     ];
 
     public function chef(){
