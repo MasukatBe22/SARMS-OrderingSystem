@@ -59,8 +59,16 @@ class OrderStatus extends AdminComponent
         $CookedOrder = Order::where('status', 'Cooked')->whereDay('created_at', Carbon::today())->count();
         $PickupOrder = Order::where('status', 'Pick-up')->whereDay('created_at', Carbon::today())->count();
         $CancelOrder = Order::where('status', 'Cancel')->whereDay('created_at', Carbon::today())->count();
+        $totals = Order::latest()->orderBy($this->sortColumnName, $this->sortDirection)->paginate(5);
+        $yesterdays = Order::latest()->whereDay('created_at', Carbon::yesterday())->orderBy($this->sortColumnName, $this->sortDirection)->paginate(5);
+        $months = Order::latest()->whereMonth('created_at', Carbon::now()->month)->orderBy($this->sortColumnName, $this->sortDirection)->paginate(5);
+        $years = Order::latest()->whereYear('created_at', Carbon::now()->year)->orderBy($this->sortColumnName, $this->sortDirection)->paginate(5);
         return view('livewire.admin.dashboard.order-status', [
             'orders' => $orders,
+            'totals' => $totals,
+            'yesterdays' => $yesterdays,
+            'months' => $months,
+            'years' => $years,
             'customer' => $customer,
             'product' => $product,
             'CookingOrder' => $CookingOrder,
